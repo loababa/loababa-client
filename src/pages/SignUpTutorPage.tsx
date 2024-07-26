@@ -1,7 +1,9 @@
+import TutorSignUpStepper from "@/components/Stepper/TutorSignUpStepper.tsx";
+
 const SignUpTutorPage = () => {
   return (
-    <div>
-      <h1>Sign Up Tutor Page</h1>
+    <div className="flex flex-col items-center">
+      <TutorSignUpStepper />
     </div>
   );
 };

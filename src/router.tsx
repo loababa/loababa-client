@@ -21,12 +21,22 @@ const router = createBrowserRouter([
         element: <LoginPage />
       },
       {
-        path: ROUTE_PATH.SIGNUP_TUTOR,
-        element: <SignUpTutorPage />
-      },
-      {
         path: ROUTE_PATH.SIGNUP_TUTEE,
         element: <SignUpTuteePage />
+      }
+    ]
+  },
+  {
+    element: (
+      <BasicLayout
+        withHeader
+        withHeaderOptions={{ title: "로쌤 프로필 작성" }}
+      />
+    ),
+    children: [
+      {
+        path: ROUTE_PATH.SIGNUP_TUTOR,
+        element: <SignUpTutorPage />
       }
     ]
   },
