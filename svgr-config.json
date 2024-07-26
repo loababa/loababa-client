@@ -8,7 +8,7 @@
   "replaceAttrValues": {
     "#FFF": "{props.color || `#FFFFFF`}",
     "#000": "{props.color || `#000000`}",
-    "#424242": "{props.color || `#424242`}",
+    "#424242": "{props.color || `#424242`}"
   },
   "svgProps": {
     "width": "{props.width || 24}",
