@@ -31,12 +31,32 @@ const router = createBrowserRouter([
     ]
   },
   {
-    element: <BasicLayout withFooter />,
+    element: (
+      <BasicLayout
+        withHeader
+        withHeaderOptions={{
+          leftUI: <img src="/assets/mock-avatar.png" />,
+          rightUI: <Notification />
+        }}
+        withFooter
+      />
+    ),
     children: [
       {
         path: ROUTE_PATH.HOME,
         element: <HomePage />
-      },
+      }
+    ]
+  },
+  {
+    element: (
+      <BasicLayout
+        withHeader
+        withHeaderOptions={{ leftUI: "마이페이지", rightUI: <Notification /> }}
+        withFooter
+      />
+    ),
+    children: [
       {
         path: ROUTE_PATH.MYPAGE,
         element: <MyPage />
