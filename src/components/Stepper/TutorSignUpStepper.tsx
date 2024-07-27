@@ -1,33 +1,19 @@
-import {
-  SetIntroduceStep,
-  SetJobImprintStep,
-  SetNicknameStep,
-  SetScheduleStep
-} from "@/components/Stepper/SignUpStep";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { clsx } from "clsx";
-
-const STEP_INFO = [
-  {
-    label: "기본 정보",
-    step: <SetNicknameStep />
-  },
-  {
-    label: "직업 정보",
-    step: <SetJobImprintStep />
-  },
-  {
-    label: "로쌤 소개",
-    step: <SetIntroduceStep />
-  },
-  {
-    label: "일정 선택",
-    step: <SetScheduleStep />
-  }
-];
+import { useNavigate } from "react-router-dom";
+import ROUTE_PATH from "@/constants/routePath.ts";
+import { STEP_INFO } from "@/components/Stepper/TutorSignUpStep";
 
 const TutorSignUpStepper = () => {
   const [currentStep, setCurrentStep] = useState(0);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // TODO: 임시 로직. 추후 SignUpTutor 페이지로부터 넘겨받는 handleComplete 함수 실행 로직으로 대체
+    if (currentStep >= STEP_INFO.length) {
+      navigate(ROUTE_PATH.HOME);
+    }
+  }, [currentStep]);
   return (
     <div className="w-full flex flex-col items-center px-[20px]">
       <div className="w-full flex justify-center items-center min-h-[65px] rounded-[8px] bg-gray-950 px-[20px] py-[16px]">
@@ -80,7 +66,8 @@ const TutorSignUpStepper = () => {
           </div>
         ))}
       </div>
-      {STEP_INFO[currentStep].step}
+      {currentStep < STEP_INFO.length &&
+        STEP_INFO[currentStep].step(() => setCurrentStep((prev) => prev + 1))}
     </div>
   );
 };

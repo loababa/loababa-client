@@ -4,7 +4,11 @@ import { Input } from "@/components/ui/input.tsx";
 import { Button } from "@/components/ui/button.tsx";
 import { useForm } from "react-hook-form";
 
-export const SetNicknameStep = () => {
+interface SetNicknameStepProps {
+  handleNext: () => void;
+}
+
+export const TutorSetNicknameStep = ({ handleNext }: SetNicknameStepProps) => {
   const { register, handleSubmit, formState } = useForm<{ nickname: string }>();
   return (
     <div className="flex flex-col mt-[40px] w-full">
@@ -35,7 +39,8 @@ export const SetNicknameStep = () => {
         </div>
         <Button
           className="w-full mt-[300px]"
-          disabled={!formState.isValid}>
+          disabled={!formState.isValid}
+          onClick={handleNext}>
           다음
         </Button>
       </form>
