@@ -2,6 +2,7 @@ export { default as ArrowLeft } from "./ArrowLeft";
 export { default as Calendar } from "./Calendar";
 export { default as GoogleLogo } from "./GoogleLogo";
 export { default as Home } from "./Home";
+export { default as ImgInputLabel } from "./ImgInputLabel";
 export { default as KakaoLogo } from "./KakaoLogo";
 export { default as LoababaLogo } from "./LoababaLogo";
 export { default as LoababaTitle } from "./LoababaTitle";

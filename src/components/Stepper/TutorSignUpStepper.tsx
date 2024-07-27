@@ -32,7 +32,9 @@ const TutorSignUpStepper = () => {
     <div className="w-full flex flex-col items-center px-[20px]">
       <div className="w-full flex justify-center items-center min-h-[65px] rounded-[8px] bg-gray-950 px-[20px] py-[16px]">
         {STEP_INFO.map((step, index) => (
-          <div className="flex items-center">
+          <div
+            className="flex items-center"
+            key={`stepper-step-${index}`}>
             <div
               className="flex flex-col justify-center items-center gap-[7px] cursor-pointer"
               onClick={() => setCurrentStep(index)}>
