@@ -25,7 +25,7 @@ const Footer = () => {
   const navigate = useNavigate();
 
   return (
-    <footer className="w-full h-[82px] bg-gray-950 flex justify-between items-center rounded-tl-[20px] rounded-tr-[20px] pl-[45px] pr-[45px] pb-[35px]">
+    <footer className="w-full h-[82px] bg-gray-950 flex justify-between items-center rounded-tl-[20px] rounded-tr-[20px] pl-[45px] pr-[45px] pb-[35px] pt-[9px]">
       {footerItems.map(({ icon: Icon, label, path }, index) => (
         <div
           key={index}
