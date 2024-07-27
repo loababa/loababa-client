@@ -127,8 +127,7 @@ const router = createBrowserRouter([
     element: (
       <BasicLayout
         withHeader
-        withHeaderOptions={{ leftUI: <ArrowLeft />, title: "상담 요청하기" }}
-        withFooter
+        withHeaderOptions={{ leftUI: <ArrowLeft />, title: "로쌤 상세 정보" }}
       />
     ),
     children: [
