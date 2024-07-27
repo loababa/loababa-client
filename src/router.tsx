@@ -9,7 +9,7 @@ import TutorDetailPage from "@/pages/TutorDetailPage.tsx";
 import ConsultingRequestPage from "@/pages/ConsultingRequestPage.tsx";
 import ConsultingPage from "@/pages/ConsultingPage.tsx";
 import MyPage from "@/pages/MyPage.tsx";
-import { ArrowLeft, Notification } from "@/components/icons";
+import { ArrowLeft, MockAvatar, Notification } from "@/components/icons";
 import ConsultingDetailPage from "@/pages/ConsultingDetailPage.tsx";
 
 const router = createBrowserRouter([
@@ -45,7 +45,12 @@ const router = createBrowserRouter([
       <BasicLayout
         withHeader
         withHeaderOptions={{
-          leftUI: <img src="/assets/mock-avatar.png" />,
+          leftUI: (
+            <MockAvatar
+              width={50}
+              height={50}
+            />
+          ),
           rightUI: <Notification />
         }}
         withFooter

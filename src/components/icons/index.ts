@@ -6,5 +6,6 @@ export { default as ImgInputLabel } from "./ImgInputLabel";
 export { default as KakaoLogo } from "./KakaoLogo";
 export { default as LoababaLogo } from "./LoababaLogo";
 export { default as LoababaTitle } from "./LoababaTitle";
+export { default as MockAvatar } from "./MockAvatar";
 export { default as Notification } from "./Notification";
 export { default as UserMono } from "./UserMono";
