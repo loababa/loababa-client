@@ -3,6 +3,7 @@ import { TutorSetJobImprintStep } from "@/components/Stepper/TutorSignUpStep/Tut
 import { TutorSetIntroduceStep } from "@/components/Stepper/TutorSignUpStep/TutorSetIntroduceStep.tsx";
 import { TutorSetScheduleStep } from "@/components/Stepper/TutorSignUpStep/TutorSetScheduleStep.tsx";
 
+// TODO: 각 요소 step에서 handleSubmit도 받아서 Root Form Data에 저장해야 함
 export const STEP_INFO = [
   {
     label: "기본 정보",
