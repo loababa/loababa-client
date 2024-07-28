@@ -11,7 +11,7 @@ import ConsultingPage from "@/pages/ConsultingPage.tsx";
 import MyPage from "@/pages/MyPage.tsx";
 import { MockAvatar, Notification } from "@/components/icons";
 import ConsultingDetailPage from "@/pages/ConsultingDetailPage.tsx";
-import BackButton from "@/components/Provider/BackButton.tsx";
+import BackButton from "@/components/Layout/BackButton.tsx";
 
 const router = createBrowserRouter([
   {
