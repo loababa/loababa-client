@@ -1,16 +1,21 @@
 import { MockAvatar } from "@/components/icons";
 import { Badge } from "@/components/ui/badge.tsx";
 import { clsx } from "clsx";
+import { useNavigate } from "react-router-dom";
+import ROUTE_PATH from "@/constants/routePath.ts";
 
 const ProfileCard = () => {
+  const navigate = useNavigate();
   return (
-    <div className="w-full min-h-[148px] bg-gray-900 rounded-[8px] p-[16px] flex flex-col">
+    <div
+      className="w-full min-h-[148px] bg-gray-900 rounded-[8px] p-[16px] flex flex-col cursor-pointer"
+      onClick={() => navigate(ROUTE_PATH.TUTOR_DETAIL("1"))}>
       <div className="flex gap-[8px]">
         <MockAvatar
           width={40}
           height={40}
         />
-        <div className="flex flex-col">
+        <div className="flex flex-col gap-[4px]">
           <span className="flex gap-[4px] items-center">
             <span className="text-[12px]">로쌤만믿어</span>
             <div className="text-c1 text-gray-300 py-[4px] px-[6px] bg-gray-800 rounded-[4px]">

@@ -12,7 +12,7 @@ const MyPage = () => {
             width={40}
             height={40}
           />
-          <div className="flex flex-col">
+          <div className="flex flex-col gap-[4px]">
             <span className="flex gap-[4px] items-center">
               <span className="text-[12px]">로쌤만믿어</span>
               <div className="text-c1 text-gray-300 py-[4px] px-[6px] bg-gray-800 rounded-[4px]">
