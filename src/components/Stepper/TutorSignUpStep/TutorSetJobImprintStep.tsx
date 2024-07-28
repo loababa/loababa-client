@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button.tsx";
 import { Label } from "@/components/ui/label.tsx";
 import { Input } from "@/components/ui/input.tsx";
+import { useForm } from "react-hook-form";
 
 interface SetJobImprintStepProps {
   handleNext: () => void;
@@ -9,9 +10,18 @@ interface SetJobImprintStepProps {
 export const TutorSetJobImprintStep = ({
   handleNext
 }: SetJobImprintStepProps) => {
+  const { register, handleSubmit, formState } = useForm<{
+    firstJobImprint: string;
+    secondJobImprint: string;
+    userLevel: number;
+  }>();
   return (
     <div className="w-full">
-      <form onSubmit={(data) => console.log(data)}>
+      <form
+        onSubmit={handleSubmit((data) => {
+          console.log(data);
+          handleNext();
+        })}>
         <fieldset>
           <div className="flex flex-col mt-[40px]">
             <Label
@@ -29,11 +39,19 @@ export const TutorSetJobImprintStep = ({
                 id="job-imprint-1"
                 className="dark:bg-gray-900 dark:placeholder:text-gray-600 dark:border-gray-800 h-[52px] rounded-[8px]"
                 placeholder="공백 포함 3글자 이내"
+                {...register("firstJobImprint", {
+                  required: true,
+                  maxLength: 3
+                })}
               />
               <Input
                 id="job-imprint-2"
                 className="dark:bg-gray-900 dark:placeholder:text-gray-600 dark:border-gray-800 h-[52px] rounded-[8px]"
                 placeholder="공백 포함 3글자 이내"
+                {...register("secondJobImprint", {
+                  required: true,
+                  maxLength: 3
+                })}
               />
             </div>
           </div>
@@ -53,14 +71,18 @@ export const TutorSetJobImprintStep = ({
                 id="user-level"
                 className="dark:bg-gray-900 dark:placeholder:text-gray-600 dark:border-gray-800 h-[52px] rounded-[8px]"
                 placeholder="숫자만 입력해주세요"
+                {...register("userLevel", {
+                  required: true,
+                  pattern: /^[0-9]+$/
+                })}
               />
             </div>
           </div>
         </fieldset>
         <Button
           type="submit"
-          className="w-full mt-[300px]"
-          onClick={handleNext}>
+          disabled={!formState.isValid}
+          className="w-full mt-[300px]">
           다음
         </Button>
       </form>
