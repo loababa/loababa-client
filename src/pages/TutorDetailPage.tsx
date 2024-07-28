@@ -3,8 +3,11 @@ import { Badge } from "@/components/ui/badge.tsx";
 import { clsx } from "clsx";
 import Divider from "@/components/Divider/Divider.tsx";
 import { Button } from "@/components/ui/button.tsx";
+import { useNavigate } from "react-router-dom";
+import ROUTE_PATH from "@/constants/routePath.ts";
 
 const TutorDetailPage = () => {
+  const navigate = useNavigate();
   return (
     <div>
       <section className="flex flex-col gap-[10px] px-[20px] mb-[30px]">
@@ -113,7 +116,8 @@ const TutorDetailPage = () => {
         </p>
         <Button
           variant="ghost"
-          className="w-full bg-green-400 min-h-[56px] rounded-[8px] font-semibold">
+          className="w-full bg-green-400 min-h-[56px] rounded-[8px] font-semibold"
+          onClick={() => navigate(ROUTE_PATH.CONSULTING_REQUEST("1"))}>
           상담 요청하기
         </Button>
       </section>
