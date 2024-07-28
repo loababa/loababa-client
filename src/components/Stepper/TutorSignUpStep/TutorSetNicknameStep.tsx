@@ -32,7 +32,7 @@ export const TutorSetNicknameStep = ({ handleNext }: SetNicknameStepProps) => {
           <Label htmlFor="nickname">닉네임을 입력해주세요</Label>
           <Input
             id="nickname"
-            className="dark:bg-gray-900 dark:placeholder:text-gray-600 h-[52px] rounded-[8px]"
+            className="dark:bg-gray-900 dark:placeholder:text-gray-600 dark:border-gray-800 h-[52px] rounded-[8px]"
             placeholder="공백 포함 8자 이내"
             {...register("nickname", { required: true, maxLength: 8 })}
           />
