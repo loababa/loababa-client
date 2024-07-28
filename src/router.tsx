@@ -9,8 +9,9 @@ import TutorDetailPage from "@/pages/TutorDetailPage.tsx";
 import ConsultingRequestPage from "@/pages/ConsultingRequestPage.tsx";
 import ConsultingPage from "@/pages/ConsultingPage.tsx";
 import MyPage from "@/pages/MyPage.tsx";
-import { ArrowLeft, MockAvatar, Notification } from "@/components/icons";
+import { MockAvatar, Notification } from "@/components/icons";
 import ConsultingDetailPage from "@/pages/ConsultingDetailPage.tsx";
+import BackButton from "@/components/Provider/BackButton.tsx";
 
 const router = createBrowserRouter([
   {
@@ -97,7 +98,7 @@ const router = createBrowserRouter([
     element: (
       <BasicLayout
         withHeader
-        withHeaderOptions={{ leftUI: <ArrowLeft />, title: "상세 보기" }}
+        withHeaderOptions={{ leftUI: <BackButton />, title: "상세 보기" }}
         withFooter
       />
     ),
@@ -112,7 +113,7 @@ const router = createBrowserRouter([
     element: (
       <BasicLayout
         withHeader
-        withHeaderOptions={{ leftUI: <ArrowLeft />, title: "상담 요청하기" }}
+        withHeaderOptions={{ leftUI: <BackButton />, title: "상담 요청하기" }}
         withFooter
       />
     ),
@@ -127,7 +128,7 @@ const router = createBrowserRouter([
     element: (
       <BasicLayout
         withHeader
-        withHeaderOptions={{ leftUI: <ArrowLeft />, title: "로쌤 상세 정보" }}
+        withHeaderOptions={{ leftUI: <BackButton />, title: "로쌤 상세 정보" }}
       />
     ),
     children: [
