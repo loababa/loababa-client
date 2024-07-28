@@ -8,4 +8,5 @@ export { default as LoababaLogo } from "./LoababaLogo";
 export { default as LoababaTitle } from "./LoababaTitle";
 export { default as MockAvatar } from "./MockAvatar";
 export { default as Notification } from "./Notification";
+export { default as Plus } from "./Plus";
 export { default as UserMono } from "./UserMono";
