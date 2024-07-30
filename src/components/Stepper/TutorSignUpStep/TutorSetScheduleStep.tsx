@@ -176,7 +176,7 @@ export const TutorSetScheduleStep = ({ handleNext }: SetScheduleStepProps) => {
         )}
         <Button
           type="submit"
-          className="w-full mt-[300px] dark:text-green-500">
+          className="w-full mt-[40px] dark:text-green-500">
           확인
         </Button>
       </form>

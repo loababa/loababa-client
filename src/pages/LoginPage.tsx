@@ -9,7 +9,7 @@ import { clsx } from "clsx";
 
 const LoginPage = () => {
   return (
-    <div className="flex flex-col px-[20px]">
+    <section className="px-[20px]">
       <div className="flex flex-col items-center justify-center gap-[4px] my-[180px]">
         <LoababaLogo
           width={50}
@@ -49,7 +49,7 @@ const LoginPage = () => {
           </Button>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

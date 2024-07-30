@@ -15,7 +15,7 @@ const TutorSignUpStepper = () => {
     }
   }, [currentStep]);
   return (
-    <div className="w-full flex flex-col items-center px-[20px]">
+    <div className="w-full flex flex-col items-center px-[20px] pb-[30px]">
       <div className="w-full flex justify-center items-center min-h-[65px] rounded-[8px] bg-gray-950 px-[20px] py-[16px]">
         {STEP_INFO.map((step, index) => (
           <div

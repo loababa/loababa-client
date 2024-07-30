@@ -175,7 +175,7 @@ export const TutorSetIntroduceStep = ({
         </fieldset>
         <Button
           type="submit"
-          className="w-full mt-[100px]">
+          className="w-full mt-[40px]">
           다음
         </Button>
       </form>

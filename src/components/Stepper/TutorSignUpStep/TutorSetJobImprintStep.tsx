@@ -82,7 +82,7 @@ export const TutorSetJobImprintStep = ({
         <Button
           type="submit"
           disabled={!formState.isValid}
-          className="w-full mt-[300px]">
+          className="w-full mt-[40px]">
           다음
         </Button>
       </form>

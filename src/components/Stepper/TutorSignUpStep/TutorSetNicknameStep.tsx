@@ -38,7 +38,7 @@ export const TutorSetNicknameStep = ({ handleNext }: SetNicknameStepProps) => {
           />
         </div>
         <Button
-          className="w-full mt-[300px]"
+          className="w-full mt-[40px]"
           disabled={!formState.isValid}
           onClick={handleNext}>
           다음

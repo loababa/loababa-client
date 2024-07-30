@@ -18,9 +18,14 @@ const BasicLayout = ({
   withFooter
 }: BasicLayoutProps) => {
   return (
-    <main className={"h-dvh w-[390px] mx-auto bg-white dark:bg-black"}>
+    <main
+      className={
+        "h-full w-[390px] mx-auto flex flex-col bg-white dark:bg-black"
+      }>
       {withHeader && <Header {...withHeaderOptions} />}
-      <Outlet />
+      <div className="flex flex-col min-h-dvh">
+        <Outlet />
+      </div>
       {withFooter && <Footer />}
     </main>
   );

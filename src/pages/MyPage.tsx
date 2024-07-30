@@ -5,7 +5,7 @@ import Divider from "@/components/Divider/Divider.tsx";
 
 const MyPage = () => {
   return (
-    <div className="flex flex-col mb-[300px]">
+    <div className="flex flex-col">
       <section className="flex flex-col gap-[10px] px-[20px] mb-[30px]">
         <div className="flex gap-[8px]">
           <MockAvatar

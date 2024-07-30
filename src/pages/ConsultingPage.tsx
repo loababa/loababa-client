@@ -21,7 +21,7 @@ const ConsultingPage = () => {
   const [currentTab, setCurrentTab] = useState<TabItem>("pending");
 
   return (
-    <div className="flex flex-col">
+    <>
       <section className="flex">
         {tabList.map(({ key, label }) => (
           <Tab
@@ -34,7 +34,7 @@ const ConsultingPage = () => {
       </section>
       <section className="p-[20px]">
         {currentTab === "pending" && (
-          <div className="flex flex-col gap-[20px] mb-[300px]">
+          <div className="flex flex-col gap-[20px]">
             <span>대기 상담 1</span>
             <div className="flex flex-col">
               <div className="flex gap-[8px]">
@@ -119,7 +119,7 @@ const ConsultingPage = () => {
           </div>
         )}
         {currentTab === "confirmed" && (
-          <div className="flex flex-col gap-[20px] mb-[300px]">
+          <div className="flex flex-col gap-[20px]">
             <span>다가오는 상담 1</span>
             <div className="flex flex-col">
               <div className="flex gap-[8px]">
@@ -173,7 +173,7 @@ const ConsultingPage = () => {
           </div>
         )}
         {currentTab === "past" && (
-          <div className="flex flex-col gap-[20px] mb-[300px]">
+          <div className="flex flex-col gap-[20px]">
             <span>지난 상담 1</span>
             <div className="flex flex-col">
               <div className="flex gap-[8px]">
@@ -227,7 +227,7 @@ const ConsultingPage = () => {
           </div>
         )}
       </section>
-    </div>
+    </>
   );
 };
 
