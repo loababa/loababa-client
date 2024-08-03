@@ -21,7 +21,7 @@ const Stepper = ({ stepInfo }: StepperProps) => {
   }, [currentStep]);
   return (
     <div className="w-full flex flex-col items-center px-[20px] pb-[30px]">
-      <div className="w-full flex justify-center items-center min-h-[65px] rounded-[8px] bg-gray-950 px-[20px] py-[16px]">
+      <div className="w-full flex justify-center items-center min-h-[65px] rounded-[8px] bg-gray-950 px-[5px] py-[16px]">
         {stepInfo.map((step, index) => (
           <div
             className="flex items-center"
@@ -64,7 +64,7 @@ const Stepper = ({ stepInfo }: StepperProps) => {
             </div>
             <div
               className={clsx(
-                "flex items-center h-0.5 w-[40px] bg-gray-600 mt-[23px]",
+                "flex items-center h-0.5 min-w-[30px] max-w-[40px] bg-gray-600 mt-[23px]",
                 index === stepInfo.length - 1 ? "hidden" : "block"
               )}
             />
