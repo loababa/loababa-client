@@ -20,12 +20,12 @@ const BasicLayout = ({
   return (
     <main
       className={
-        "h-full w-[390px] mx-auto flex flex-col bg-white dark:bg-black"
+        "h-dvh max-w-[390px] mx-auto flex flex-col bg-white dark:bg-black overflow-y-scroll"
       }>
       {withHeader && <Header {...withHeaderOptions} />}
-      <div className="flex flex-col min-h-dvh">
+      <section className={"h-full"}>
         <Outlet />
-      </div>
+      </section>
       {withFooter && <Footer />}
     </main>
   );
