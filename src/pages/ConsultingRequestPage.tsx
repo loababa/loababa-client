@@ -1,7 +1,10 @@
+import Stepper from "@/components/Stepper/Stepper.tsx";
+import { consultingRequestStepInfo } from "@/components/Stepper/ConsultingRequestStep/ConsultingRequestStepInfo.tsx";
+
 const ConsultingRequestPage = () => {
   return (
-    <div>
-      <h1>Consulting Request</h1>
+    <div className="flex flex-col">
+      <Stepper stepInfo={consultingRequestStepInfo} />
     </div>
   );
 };
