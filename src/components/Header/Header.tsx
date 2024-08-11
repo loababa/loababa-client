@@ -6,7 +6,7 @@ interface HeaderProps {
 
 const Header = ({ leftUI, rightUI, title }: HeaderProps) => {
   return (
-    <header className="w-full py-[23px] px-[20px] flex items-center justify-between">
+    <header className="w-full max-h-[70px] py-[23px] px-[20px] flex items-center justify-between">
       <div className="flex justify-center items-center min-w-[32px]">
         {leftUI}
       </div>
