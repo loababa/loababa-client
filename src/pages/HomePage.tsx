@@ -3,8 +3,8 @@ import { ScrollArea } from "@/components/ui/scroll-area.tsx";
 
 const HomePage = () => {
   return (
-    <>
-      <section className="flex flex-col mt-[10px] mb-[32px] px-[20px]">
+    <div className="flex flex-col h-full overflow-y-scroll">
+      <section className="flex flex-col pt-[20px] pb-[40px] px-[20px] gap-[8px]">
         <h2 className="text-[16px] text-gray-400">
           로스트아크를 즐기는데 어려움 없도록
         </h2>
@@ -13,17 +13,15 @@ const HomePage = () => {
         </h1>
       </section>
 
-      <section className="px-[20px]">
-        <ScrollArea>
-          <div className="flex flex-col gap-[16px] max-h-[450px]">
-            <ProfileCard />
-            <ProfileCard />
-            <ProfileCard />
-            <ProfileCard />
-          </div>
-        </ScrollArea>
-      </section>
-    </>
+      <ScrollArea>
+        <div className="flex flex-col gap-[16px] px-[20px]">
+          <ProfileCard />
+          <ProfileCard />
+          <ProfileCard />
+          <ProfileCard />
+        </div>
+      </ScrollArea>
+    </div>
   );
 };
 

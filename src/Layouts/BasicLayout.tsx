@@ -18,16 +18,16 @@ const BasicLayout = ({
   withFooter
 }: BasicLayoutProps) => {
   return (
-    <main
+    <div
       className={
-        "h-dvh max-w-[390px] mx-auto flex flex-col bg-white dark:bg-black overflow-y-scroll"
+        "h-dvh max-w-[390px] mx-auto flex flex-col bg-white dark:bg-black overflow-y-scroll relative"
       }>
       {withHeader && <Header {...withHeaderOptions} />}
-      <section className={"h-full"}>
+      <main className="h-[calc(100%-152px)]">
         <Outlet />
-      </section>
+      </main>
       {withFooter && <Footer />}
-    </main>
+    </div>
   );
 };
 
