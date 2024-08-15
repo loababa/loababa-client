@@ -20,7 +20,7 @@ const BasicLayout = ({
   return (
     <div
       className={
-        "h-dvh max-w-[390px] mx-auto flex flex-col bg-white dark:bg-black overflow-y-scroll relative"
+        "h-dvh max-w-[390px] mx-auto flex flex-col bg-white dark:bg-black overflow-y-scroll"
       }>
       {withHeader && <Header {...withHeaderOptions} />}
       <main className="h-[calc(100%-152px)]">

@@ -114,7 +114,6 @@ const router = createBrowserRouter([
       <BasicLayout
         withHeader
         withHeaderOptions={{ leftUI: <BackButton />, title: "상담 요청하기" }}
-        withFooter
       />
     ),
     children: [
