@@ -38,38 +38,17 @@ const ProfileCard = () => {
         당신을 최고의 서포터로 만들겠습니다. (한줄소개)
       </span>
       <div className="flex gap-[4px] items-center">
-        <Badge
-          variant="outline"
-          className={clsx(
-            "w-fit min-h-[24px]",
-            "dark:text-[10px] dark:text-gray-200 dark:font-light dark:border-gray-800"
-          )}>
-          키워드글자수
-        </Badge>
-        <Badge
-          variant="outline"
-          className={clsx(
-            "w-fit min-h-[24px]",
-            "dark:text-[10px] dark:text-gray-200 dark:font-light dark:border-gray-800"
-          )}>
-          키워드글자수
-        </Badge>
-        <Badge
-          variant="outline"
-          className={clsx(
-            "w-fit min-h-[24px]",
-            "dark:text-[10px] dark:text-gray-200 dark:font-light dark:border-gray-800"
-          )}>
-          키워드글자수
-        </Badge>
-        <Badge
-          variant="outline"
-          className={clsx(
-            "w-fit min-h-[24px]",
-            "dark:text-[10px] dark:text-gray-200 dark:font-light dark:border-gray-800"
-          )}>
-          키워드글자수
-        </Badge>
+        {Array.from({ length: 4 }).map((_, index) => (
+          <Badge
+            variant="outline"
+            className={clsx(
+              "w-fit min-h-[24px] truncate",
+              "dark:text-[10px] dark:text-gray-200 dark:font-light dark:border-gray-800"
+            )}
+            key={index}>
+            키워드글자수
+          </Badge>
+        ))}
       </div>
     </div>
   );
