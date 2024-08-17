@@ -87,7 +87,7 @@ export const ConsultingQuestionStep = ({
         </fieldset>
       </section>
       <Button
-        className="dark:bg-green-400 dark:hover:bg-green-400/80 dark:text-white py-[16px] h-fit max-h-[50px]"
+        className="text-[16px] font-semibold dark:bg-green-400 dark:hover:bg-green-400/80 dark:text-white py-[16px] h-fit max-h-[50px]"
         onClick={handleNext}>
         다음
       </Button>
