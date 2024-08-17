@@ -57,7 +57,7 @@ const ScheduleSelectDialog = ({ trigger }: ScheduleSelectDialogProps) => {
     <Dialog>
       {trigger && <DialogTrigger asChild>{trigger}</DialogTrigger>}
       <DialogContent
-        className="w-[390px] h-dvh dark:bg-black dark:text-white !rounded-[0px] p-0 border-none"
+        className="w-[390px] h-dvh overflow-y-scroll dark:bg-black dark:text-white !rounded-[0px] p-0 border-none"
         overlayClassName="bg-transparent"
         showCloseButton={false}>
         <DialogHeader className="space-y-0">
