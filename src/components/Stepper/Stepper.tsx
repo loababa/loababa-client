@@ -20,7 +20,7 @@ const Stepper = ({ stepInfo }: StepperProps) => {
     }
   }, [currentStep]);
   return (
-    <div className="w-full flex flex-col items-center px-[20px] pb-[30px]">
+    <div className="w-full h-full flex flex-col items-center px-[20px] pb-[30px]">
       <div className="w-full flex justify-center items-center min-h-[65px] rounded-[8px] bg-gray-950 px-[20px] py-[16px]">
         {stepInfo.map((step, index) => (
           <div

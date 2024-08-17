@@ -17,13 +17,26 @@ const BasicLayout = ({
   withHeaderOptions,
   withFooter
 }: BasicLayoutProps) => {
+  const getComputedMainHeight = () => {
+    if (withHeader && withFooter) {
+      return "h-[calc(100%-152px)]";
+    }
+    if (withHeader) {
+      return "h-[calc(100%-70px)]";
+    }
+    if (withFooter) {
+      return "h-[calc(100%-82px)]";
+    }
+    return "h-full";
+  };
+
   return (
     <div
       className={
         "h-dvh max-w-[390px] mx-auto flex flex-col bg-white dark:bg-black overflow-y-scroll"
       }>
       {withHeader && <Header {...withHeaderOptions} />}
-      <main className="h-[calc(100%-152px)]">
+      <main className={getComputedMainHeight()}>
         <Outlet />
       </main>
       {withFooter && <Footer />}

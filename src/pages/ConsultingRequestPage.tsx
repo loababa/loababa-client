@@ -3,7 +3,7 @@ import { consultingRequestStepInfo } from "@/components/Stepper/ConsultingReques
 
 const ConsultingRequestPage = () => {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col h-full">
       <Stepper stepInfo={consultingRequestStepInfo} />
     </div>
   );
