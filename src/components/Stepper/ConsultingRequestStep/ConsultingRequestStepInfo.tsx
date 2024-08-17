@@ -4,19 +4,19 @@ import { ConsultingPendingStep } from "@/components/Stepper/ConsultingRequestSte
 
 export const consultingRequestStepInfo = [
   {
-    label: "질문 작성",
-    step: (handleNext: () => void) => (
-      <ConsultingQuestionStep handleNext={handleNext} />
-    )
-  },
-  {
     label: "일정 선택",
     step: (handleNext: () => void) => (
       <ConsultingScheduleStep handleNext={handleNext} />
     )
   },
   {
-    label: "상담 대기",
+    label: "질문 작성",
+    step: (handleNext: () => void) => (
+      <ConsultingQuestionStep handleNext={handleNext} />
+    )
+  },
+  {
+    label: "요청 완료",
     step: (handleNext: () => void) => (
       <ConsultingPendingStep handleNext={handleNext} />
     )
