@@ -2,7 +2,7 @@ import { ComponentPropsWithoutRef } from "react";
 import { cn } from "@/lib/utils.ts";
 
 interface DividerProps extends ComponentPropsWithoutRef<"div"> {
-  size?: 0 | 1 | 2 | 4;
+  size?: 0 | 0.5 | 1 | 2 | 4;
 }
 
 const Divider = ({ size = 1, ...props }: DividerProps) => {
@@ -10,6 +10,8 @@ const Divider = ({ size = 1, ...props }: DividerProps) => {
     switch (size) {
       case 0:
         return "border-0";
+      case 0.5:
+        return "border-t";
       case 1:
         return "border";
       case 2:
