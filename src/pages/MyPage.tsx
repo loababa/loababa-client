@@ -78,7 +78,7 @@ const MyPage = () => {
           <span className="text-gray-400 font-normal">로아바바 소개</span>
         </div>
         <div className="w-full flex items-center justify-start px-[20px] py-[16px]">
-          <span className="text-red font-normal">회원탈퇴</span>
+          <span className="text-gray-400 font-normal">회원탈퇴</span>
         </div>
       </section>
     </div>
