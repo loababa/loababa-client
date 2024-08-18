@@ -9,7 +9,7 @@ import {
   SelectValue
 } from "@/components/ui/select.tsx";
 import { TIME_HOUR_LIST } from "@/constants/time.ts";
-import { Controller, useFieldArray, useForm } from "react-hook-form";
+import { useFieldArray, useForm } from "react-hook-form";
 import { weekDayMap } from "@/constants/date.ts";
 
 interface SetScheduleStepProps {
@@ -86,14 +86,12 @@ export const TutorSetScheduleStep = ({ handleNext }: SetScheduleStepProps) => {
         {scheduleSelectMode === "weekday" && (
           <div className="flex flex-col gap-[12px] mt-[20px]">
             <span className="font-semibold text-[16px]">평일(월-금)</span>
-            <Controller
-              control={control}
-              render={({ field }) => (
-                <Select
-                  name="weekday"
-                  onValueChange={field.onChange}>
+            <div className="flex gap-[12px] justify-between">
+              <div className="w-1/2 flex flex-col gap-[8px]">
+                <span className="text-[14px]">시작 시간</span>
+                <Select>
                   <SelectTrigger className="h-[50px] border dark:border-gray-800 dark:bg-gray-900 rounded-[8px]">
-                    <SelectValue placeholder={"시간을 선택해주세요!"} />
+                    <SelectValue placeholder={"시간 선택"} />
                   </SelectTrigger>
                   <SelectContent className="dark:bg-gray-800">
                     {TIME_HOUR_LIST.map((item) => (
@@ -106,19 +104,34 @@ export const TutorSetScheduleStep = ({ handleNext }: SetScheduleStepProps) => {
                     ))}
                   </SelectContent>
                 </Select>
-              )}
-              name={"weekday"}
-            />
+              </div>
+              <div className="w-1/2 flex flex-col gap-[8px]">
+                <span className="text-[14px]">종료 시간</span>
+                <Select>
+                  <SelectTrigger className="h-[50px] border dark:border-gray-800 dark:bg-gray-900 rounded-[8px]">
+                    <SelectValue placeholder={"시간 선택"} />
+                  </SelectTrigger>
+                  <SelectContent className="dark:bg-gray-800">
+                    {TIME_HOUR_LIST.map((item) => (
+                      <SelectItem
+                        value={item}
+                        key={item}
+                        className="dark:hover:bg-gray-900 dark:focus:bg-gray-900">
+                        {item}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
 
             <span className="font-semibold text-[16px]">주말(토-일)</span>
-            <Controller
-              control={control}
-              render={({ field }) => (
-                <Select
-                  name="weekend"
-                  onValueChange={field.onChange}>
+            <div className="flex gap-[12px] justify-between">
+              <div className="w-1/2 flex flex-col gap-[8px]">
+                <span className="text-[14px]">시작 시간</span>
+                <Select>
                   <SelectTrigger className="h-[50px] border dark:border-gray-800 dark:bg-gray-900 rounded-[8px]">
-                    <SelectValue placeholder={"시간을 선택해주세요!"} />
+                    <SelectValue placeholder={"시간 선택"} />
                   </SelectTrigger>
                   <SelectContent className="dark:bg-gray-800">
                     {TIME_HOUR_LIST.map((item) => (
@@ -131,9 +144,26 @@ export const TutorSetScheduleStep = ({ handleNext }: SetScheduleStepProps) => {
                     ))}
                   </SelectContent>
                 </Select>
-              )}
-              name={"weekend"}
-            />
+              </div>
+              <div className="w-1/2 flex flex-col gap-[8px]">
+                <span className="text-[14px]">종료 시간</span>
+                <Select>
+                  <SelectTrigger className="h-[50px] border dark:border-gray-800 dark:bg-gray-900 rounded-[8px]">
+                    <SelectValue placeholder={"시간 선택"} />
+                  </SelectTrigger>
+                  <SelectContent className="dark:bg-gray-800">
+                    {TIME_HOUR_LIST.map((item) => (
+                      <SelectItem
+                        value={item}
+                        key={item}
+                        className="dark:hover:bg-gray-900 dark:focus:bg-gray-900">
+                        {item}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
           </div>
         )}
         {/* 요일별로 달라요 */}
@@ -147,7 +177,7 @@ export const TutorSetScheduleStep = ({ handleNext }: SetScheduleStepProps) => {
                     key={field.id}
                     onClick={() => setCurrentDay(field.day)}
                     className={clsx(
-                      "w-[45px] h-[50px] flex justify-center items-center rounded-[8px]",
+                      "w-[45px] h-[50px] flex justify-center items-center rounded-[8px] cursor-pointer",
                       currentDay === field.day
                         ? "bg-green-400 border-none"
                         : "bg-gray-900 border border-gray-800"
