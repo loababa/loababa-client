@@ -1,5 +1,6 @@
 export { default as ArrowLeft } from "./ArrowLeft";
 export { default as Calendar } from "./Calendar";
+export { default as CheckCircleGreen } from "./CheckCircleGreen";
 export { default as GoogleLogo } from "./GoogleLogo";
 export { default as Home } from "./Home";
 export { default as ImgInputLabel } from "./ImgInputLabel";
