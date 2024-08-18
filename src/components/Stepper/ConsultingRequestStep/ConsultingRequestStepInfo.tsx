@@ -1,6 +1,6 @@
 import { ConsultingQuestionStep } from "@/components/Stepper/ConsultingRequestStep/ConsultingQuestionStep.tsx";
 import { ConsultingScheduleStep } from "@/components/Stepper/ConsultingRequestStep/ConsultingScheduleStep.tsx";
-import { ConsultingPendingStep } from "@/components/Stepper/ConsultingRequestStep/ConsultingPendingStep.tsx";
+import { ConsultingRequestCompleteStep } from "@/components/Stepper/ConsultingRequestStep/ConsultingRequestCompleteStep.tsx";
 
 export const consultingRequestStepInfo = [
   {
@@ -18,7 +18,7 @@ export const consultingRequestStepInfo = [
   {
     label: "요청 완료",
     step: (handleNext: () => void) => (
-      <ConsultingPendingStep handleNext={handleNext} />
+      <ConsultingRequestCompleteStep handleNext={handleNext} />
     )
   }
 ];
