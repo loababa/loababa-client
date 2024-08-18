@@ -10,7 +10,7 @@ export const ConsultingRequestCompleteStep = ({
   handleNext
 }: ConsultingPendingStepProps) => {
   return (
-    <div className="w-full flex flex-col items-center">
+    <div className="w-full flex flex-col items-center pb-[20px]">
       <section className="flex flex-col items-center gap-[24px] pt-[40px] pb-[60px] px-[20px]">
         <CheckCircleGreen
           width={36}
