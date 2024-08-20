@@ -17,6 +17,8 @@ import { useState } from "react";
 import { format } from "date-fns";
 import { ko } from "date-fns/locale";
 import { clsx } from "clsx";
+import { TIME_ONE_HOUR_LIST } from "@/constants/time.ts";
+import { ScrollArea } from "@/components/ui/scroll-area.tsx";
 
 interface ScheduleDateSelectItemProps {
   time: string;
@@ -87,8 +89,9 @@ const ScheduleSelectDialog = ({ trigger }: ScheduleSelectDialogProps) => {
                   />
                   <span className="text-[14px]">
                     {selectedDate
-                      ? format(selectedDate, "yyyy.MM.dd(E)", { locale: ko })
+                      ? format(selectedDate, "yyyy.MM.dd(E) ", { locale: ko })
                       : "날짜를 선택해주세요."}
+                    {selectedTime && `${selectedTime}`}
                   </span>
                 </div>
               </div>
@@ -109,23 +112,18 @@ const ScheduleSelectDialog = ({ trigger }: ScheduleSelectDialogProps) => {
                 <h2 className="text-start font-semibold">
                   시간을 선택해주세요.
                 </h2>
-                <div className="w-full flex flex-col gap-[8px]">
-                  <ScheduleTimeSelectItem
-                    time="10:00 ~ 11:00"
-                    isSelected={selectedTime === "10:00 ~ 11:00"}
-                    setSelectedTime={setSelectedTime}
-                  />
-                  <ScheduleTimeSelectItem
-                    time="14:00 ~ 15:00"
-                    isSelected={selectedTime === "14:00 ~ 15:00"}
-                    setSelectedTime={setSelectedTime}
-                  />
-                  <ScheduleTimeSelectItem
-                    time="18:00 ~ 19:00"
-                    isSelected={selectedTime === "18:00 ~ 19:00"}
-                    setSelectedTime={setSelectedTime}
-                  />
-                </div>
+                <ScrollArea className="h-[200px]">
+                  <div className="w-full flex flex-col gap-[8px]">
+                    {TIME_ONE_HOUR_LIST.map((time) => (
+                      <ScheduleTimeSelectItem
+                        time={time}
+                        isSelected={selectedTime === time}
+                        setSelectedTime={setSelectedTime}
+                        key={time}
+                      />
+                    ))}
+                  </div>
+                </ScrollArea>
               </section>
             )}
           </div>
