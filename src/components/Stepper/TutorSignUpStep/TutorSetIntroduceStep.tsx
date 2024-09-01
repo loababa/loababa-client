@@ -25,8 +25,12 @@ export const TutorSetIntroduceStep = ({
   return (
     <div className="w-full">
       <form
-        onSubmit={handleSubmit((data) => {
-          console.log(data);
+        onSubmit={handleSubmit(({ title, contents, topics }) => {
+          console.log({
+            title,
+            contents,
+            topics: topics.map((topic) => topic.topic)
+          });
           // handleNext();
         })}>
         <fieldset>

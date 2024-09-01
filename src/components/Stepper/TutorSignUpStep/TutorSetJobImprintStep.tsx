@@ -22,7 +22,7 @@ export const TutorSetJobImprintStep = ({
           ({ firstJobImprint, secondJobImprint, highestLevel }) => {
             console.log({
               classEngravings: [firstJobImprint, secondJobImprint],
-              highestLevel: highestLevel
+              highestLevel: Number(highestLevel)
             });
             // handleNext();
           }
