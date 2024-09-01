@@ -14,7 +14,12 @@ const ProfileCard = ({ tutorInfo }: ProfileCardProps) => {
   return (
     <div
       className="w-full min-h-[148px] bg-gray-900 rounded-[8px] p-[16px] flex flex-col cursor-pointer"
-      onClick={() => navigate(ROUTE_PATH.TUTOR_DETAIL("1"))}>
+      onClick={() =>
+        navigate(
+          ROUTE_PATH.TUTOR_DETAIL(tutorInfo.consultingPostId.toString()),
+          { state: { info: tutorInfo } }
+        )
+      }>
       <div className="flex gap-[8px]">
         <MockAvatar
           width={40}

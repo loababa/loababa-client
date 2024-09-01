@@ -3,11 +3,29 @@ import { Badge } from "@/components/ui/badge.tsx";
 import { clsx } from "clsx";
 import Divider from "@/components/Divider/Divider.tsx";
 import { Button } from "@/components/ui/button.tsx";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import ROUTE_PATH from "@/constants/routePath.ts";
+import { useEffect } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { getTutorInfoDetail } from "@/apis/getTutorInfoDetail.ts";
+import { TutorInfo } from "@/types";
 
 const TutorDetailPage = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const { nickname, highestLevel, classEngravings, consultingTopics } = location
+    .state.info as TutorInfo;
+
+  useEffect(() => {
+    console.log(location.state);
+  }, []);
+
+  const { data: profileData } = useQuery({
+    queryKey: ["tutor_profile", location.state.info.consultingPostId],
+    queryFn: () => getTutorInfoDetail(location.state.info.consultingPostId)
+  });
+
   return (
     <div>
       <section className="flex flex-col gap-[10px] px-[20px] mb-[30px]">
@@ -18,56 +36,35 @@ const TutorDetailPage = () => {
           />
           <div className="flex flex-col">
             <span className="flex gap-[4px] items-center">
-              <span className="text-[12px]">로쌤만믿어</span>
+              <span className="text-[12px]">{nickname}</span>
               <div className="text-c1 text-gray-300 py-[4px] px-[6px] bg-gray-800 rounded-[4px]">
-                Lv.1670+
+                Lv.{highestLevel}
               </div>
             </span>
             <div className="flex gap-[4px] items-center">
-              <span className="flex gap-[4px] items-center">
-                <div className="w-[14px] h-[14px] rounded-full bg-gray-800" />
-                <span className="text-[12px] text-gray-500">직업1</span>
-              </span>
-              <span className="flex gap-[4px] items-center">
-                <div className="w-[14px] h-[14px] rounded-full bg-gray-800" />
-                <span className="text-[12px] text-gray-500">직업2</span>
-              </span>
+              {classEngravings.map((item, index) => (
+                <span
+                  className="flex gap-[4px] items-center"
+                  key={index}>
+                  <div className="w-[14px] h-[14px] rounded-full bg-gray-800" />
+                  <span className="text-[12px] text-gray-500">{item}</span>
+                </span>
+              ))}
             </div>
           </div>
         </div>
         <div className="flex gap-[4px] items-center">
-          <Badge
-            variant="outline"
-            className={clsx(
-              "w-fit min-h-[24px]",
-              "dark:bg-gray-900 dark:text-[10px] dark:text-gray-200 dark:font-normal dark:border-gray-800"
-            )}>
-            키워드글자수
-          </Badge>
-          <Badge
-            variant="outline"
-            className={clsx(
-              "w-fit min-h-[24px]",
-              "dark:bg-gray-900 dark:text-[10px] dark:text-gray-200 dark:font-normal dark:border-gray-800"
-            )}>
-            키워드글자수
-          </Badge>
-          <Badge
-            variant="outline"
-            className={clsx(
-              "w-fit min-h-[24px]",
-              "dark:bg-gray-900 dark:text-[10px] dark:text-gray-200 dark:font-normal dark:border-gray-800"
-            )}>
-            키워드글자수
-          </Badge>
-          <Badge
-            variant="outline"
-            className={clsx(
-              "w-fit min-h-[24px]",
-              "dark:bg-gray-900 dark:text-[10px] dark:text-gray-200 dark:font-normal dark:border-gray-800"
-            )}>
-            키워드글자수
-          </Badge>
+          {consultingTopics.map((topic, index) => (
+            <Badge
+              key={index}
+              variant="outline"
+              className={clsx(
+                "w-fit min-h-[24px]",
+                "dark:bg-gray-900 dark:text-[10px] dark:text-gray-200 dark:font-normal dark:border-gray-800"
+              )}>
+              {topic}
+            </Badge>
+          ))}
         </div>
       </section>
       <Divider
@@ -77,11 +74,10 @@ const TutorDetailPage = () => {
       <section className="px-[20px]">
         <p className="flex flex-col gap-[16px] mb-[40px]">
           <span className="text-[18px] font-semibold">
-            당신을 최고의 서포터로 만들겠습니다.
+            {profileData?.data.title}
           </span>
           <span className="text-[14px] text-gray-400">
-            당신을 최고의 서포터로 만들어 드리겠습니다. 모코코 언제든 환영 🙌🏻
-            글자는 공백 포함 700글자까지 가능
+            {profileData?.data.contents}
           </span>
         </p>
         <div className="flex flex-col gap-[4px]">
