@@ -48,7 +48,7 @@ export const TutorSetScheduleStep = ({ handleNext }: SetScheduleStepProps) => {
       <form
         onSubmit={handleSubmit((data) => {
           console.log(data);
-          handleNext();
+          // handleNext();
         })}>
         <p className="flex flex-col gap-[8px]">
           <span className="font-semibold text-[18px]">시간 선택</span>

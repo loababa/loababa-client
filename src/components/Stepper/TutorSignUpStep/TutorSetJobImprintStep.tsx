@@ -13,15 +13,20 @@ export const TutorSetJobImprintStep = ({
   const { register, handleSubmit, formState } = useForm<{
     firstJobImprint: string;
     secondJobImprint: string;
-    userLevel: number;
+    highestLevel: number;
   }>();
   return (
     <div className="w-full">
       <form
-        onSubmit={handleSubmit((data) => {
-          console.log(data);
-          handleNext();
-        })}>
+        onSubmit={handleSubmit(
+          ({ firstJobImprint, secondJobImprint, highestLevel }) => {
+            console.log({
+              classEngravings: [firstJobImprint, secondJobImprint],
+              highestLevel: highestLevel
+            });
+            // handleNext();
+          }
+        )}>
         <fieldset>
           <div className="flex flex-col mt-[40px]">
             <Label
@@ -71,7 +76,7 @@ export const TutorSetJobImprintStep = ({
                 id="user-level"
                 className="dark:bg-gray-900 dark:placeholder:text-gray-600 dark:border-gray-800 h-[52px] rounded-[8px]"
                 placeholder="숫자만 입력해주세요"
-                {...register("userLevel", {
+                {...register("highestLevel", {
                   required: true,
                   pattern: /^[0-9]+$/
                 })}

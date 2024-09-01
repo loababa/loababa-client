@@ -1,7 +1,14 @@
 import ProfileCard from "@/components/Card/ProfileCard.tsx";
 import { ScrollArea } from "@/components/ui/scroll-area.tsx";
+import { useQuery } from "@tanstack/react-query";
+import { getTutorInfoList } from "@/apis/getTutorInfoList.ts";
 
 const HomePage = () => {
+  const { data } = useQuery({
+    queryKey: ["tutor_profile"],
+    queryFn: getTutorInfoList,
+    staleTime: 1000 * 60 * 60 // 1 hour
+  });
   return (
     <div className="flex flex-col h-full overflow-y-scroll">
       <section className="flex flex-col pt-[20px] pb-[40px] px-[20px] gap-[8px]">

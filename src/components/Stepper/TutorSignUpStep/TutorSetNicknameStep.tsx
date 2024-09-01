@@ -3,30 +3,66 @@ import { ImgInputLabel } from "@/components/icons";
 import { Input } from "@/components/ui/input.tsx";
 import { Button } from "@/components/ui/button.tsx";
 import { useForm } from "react-hook-form";
+import { ChangeEvent, useState } from "react";
 
 interface SetNicknameStepProps {
   handleNext: () => void;
 }
 
 export const TutorSetNicknameStep = ({ handleNext }: SetNicknameStepProps) => {
-  const { register, handleSubmit, formState } = useForm<{ nickname: string }>();
+  const { register, handleSubmit, watch, formState, setValue } = useForm<{
+    nickname: string;
+    profileImageUrl: string;
+  }>();
+  const [imageFile, setImageFile] = useState<File | null>(null);
+  const [imageSrc, setImageSrc] = useState<string | null>(null);
+
+  const handleLoadImage = (event: ChangeEvent<HTMLInputElement>) => {
+    const reader = new FileReader();
+    const file = event.target.files?.[0];
+    reader.onloadend = () => {
+      setImageSrc(reader.result as string);
+    };
+    if (file) {
+      reader.readAsDataURL(file);
+      setImageFile(file);
+      setValue("profileImageUrl", file.name);
+    }
+  };
+
   return (
     <div className="flex flex-col mt-[40px] w-full">
       <Label
         htmlFor="profile-image"
         className="flex flex-col items-center gap-[12px]">
-        <ImgInputLabel
-          width={50}
-          height={50}
-        />
+        {imageSrc ? (
+          <img
+            src={imageSrc}
+            alt="local-profile-image"
+            width={50}
+            height={50}
+          />
+        ) : (
+          <ImgInputLabel
+            width={50}
+            height={50}
+          />
+        )}
         <span>프로필 이미지를 선택해주세요</span>
       </Label>
-      <form onSubmit={handleSubmit((data) => console.log(data))}>
+      <form
+        onSubmit={handleSubmit(async (data) => {
+          console.log("data", data);
+          // const res = await getNicknameCheck(data.nickname);
+          // console.log(res);
+        })}>
         <Input
           id="profile-image"
           type="file"
+          accept="image/png, image/jpeg, image/jpg"
           alt=""
           className="hidden"
+          onChange={handleLoadImage}
         />
         <div className="flex flex-col gap-[10px] justify-start mt-[40px]">
           <Label htmlFor="nickname">닉네임을 입력해주세요</Label>
@@ -39,8 +75,7 @@ export const TutorSetNicknameStep = ({ handleNext }: SetNicknameStepProps) => {
         </div>
         <Button
           className="w-full mt-[40px]"
-          disabled={!formState.isValid}
-          onClick={handleNext}>
+          disabled={!formState.isValid}>
           다음
         </Button>
       </form>

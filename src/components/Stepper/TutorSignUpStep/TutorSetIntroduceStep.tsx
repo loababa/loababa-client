@@ -13,21 +13,21 @@ export const TutorSetIntroduceStep = ({
   handleNext
 }: SetIntroduceStepProps) => {
   const { register, handleSubmit, formState, control } = useForm<{
-    shortIntro: string;
-    longIntro: string;
-    consultingSubjects: { subject: string }[];
-  }>({ defaultValues: { consultingSubjects: [{ subject: "" }] } });
+    title: string;
+    contents: string;
+    topics: { topic: string }[];
+  }>({ defaultValues: { topics: [{ topic: "" }] } });
 
   const { fields, append } = useFieldArray({
     control,
-    name: "consultingSubjects"
+    name: "topics"
   });
   return (
     <div className="w-full">
       <form
         onSubmit={handleSubmit((data) => {
           console.log(data);
-          handleNext();
+          // handleNext();
         })}>
         <fieldset>
           <div className="flex flex-col mt-[40px]">
@@ -59,7 +59,7 @@ export const TutorSetIntroduceStep = ({
                     <div className="flex justify-between text-[12px] text-gray-800">
                       <span
                         className={
-                          formState.errors.shortIntro?.type === "maxLength" ||
+                          formState.errors.title?.type === "maxLength" ||
                           field.value?.length > 30
                             ? "text-red"
                             : ""
@@ -68,7 +68,7 @@ export const TutorSetIntroduceStep = ({
                       </span>
                       <span
                         className={
-                          formState.errors.shortIntro?.type === "maxLength" ||
+                          formState.errors.title?.type === "maxLength" ||
                           field.value?.length > 30
                             ? "text-red"
                             : ""
@@ -79,7 +79,7 @@ export const TutorSetIntroduceStep = ({
                   </>
                 )}
                 control={control}
-                name={"shortIntro"}
+                name={"title"}
                 rules={{ required: true, maxLength: 30 }}
               />
             </div>
@@ -113,7 +113,7 @@ export const TutorSetIntroduceStep = ({
                     <div className="flex justify-between text-[12px] text-gray-800">
                       <span
                         className={
-                          formState.errors.longIntro?.type === "maxLength" ||
+                          formState.errors.contents?.type === "maxLength" ||
                           field.value?.length > 700
                             ? "text-red"
                             : ""
@@ -122,7 +122,7 @@ export const TutorSetIntroduceStep = ({
                       </span>
                       <span
                         className={
-                          formState.errors.longIntro?.type === "maxLength" ||
+                          formState.errors.contents?.type === "maxLength" ||
                           field.value?.length > 700
                             ? "text-red"
                             : ""
@@ -133,7 +133,7 @@ export const TutorSetIntroduceStep = ({
                   </>
                 )}
                 control={control}
-                name={"longIntro"}
+                name={"contents"}
                 rules={{ required: true, maxLength: 700 }}
               />
             </div>
@@ -157,7 +157,7 @@ export const TutorSetIntroduceStep = ({
                   id={`consulting-subject-${index}`}
                   className="dark:bg-gray-900 dark:placeholder:text-gray-600 dark:border-gray-800 h-[52px] rounded-[8px]"
                   placeholder="서포터 케어"
-                  {...register(`consultingSubjects.${index}.subject`, {
+                  {...register(`topics.${index}.topic`, {
                     required: true,
                     maxLength: 6
                   })}
@@ -168,7 +168,7 @@ export const TutorSetIntroduceStep = ({
               <Plus
                 width={22}
                 height={22}
-                onClick={() => append({ subject: "" })}
+                onClick={() => append({ topic: "" })}
               />
             </div>
           </div>
