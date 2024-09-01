@@ -4,11 +4,12 @@ import { useQuery } from "@tanstack/react-query";
 import { getTutorInfoList } from "@/apis/getTutorInfoList.ts";
 
 const HomePage = () => {
-  const { data } = useQuery({
+  const { data: tutorInfoList } = useQuery({
     queryKey: ["tutor_profile"],
-    queryFn: getTutorInfoList,
+    queryFn: () => getTutorInfoList(),
     staleTime: 1000 * 60 * 60 // 1 hour
   });
+
   return (
     <div className="flex flex-col h-full overflow-y-scroll">
       <section className="flex flex-col pt-[20px] pb-[40px] px-[20px] gap-[8px]">
@@ -22,10 +23,12 @@ const HomePage = () => {
 
       <ScrollArea>
         <div className="flex flex-col gap-[16px] px-[20px]">
-          <ProfileCard />
-          <ProfileCard />
-          <ProfileCard />
-          <ProfileCard />
+          {tutorInfoList?.data?.consultingListForm?.map((info, index) => (
+            <ProfileCard
+              tutorInfo={info}
+              key={index}
+            />
+          ))}
         </div>
       </ScrollArea>
     </div>

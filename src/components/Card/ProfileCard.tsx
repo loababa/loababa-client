@@ -3,8 +3,13 @@ import { Badge } from "@/components/ui/badge.tsx";
 import { clsx } from "clsx";
 import { useNavigate } from "react-router-dom";
 import ROUTE_PATH from "@/constants/routePath.ts";
+import { TutorInfo } from "@/types";
 
-const ProfileCard = () => {
+interface ProfileCardProps {
+  tutorInfo: TutorInfo;
+}
+
+const ProfileCard = ({ tutorInfo }: ProfileCardProps) => {
   const navigate = useNavigate();
   return (
     <div
@@ -17,28 +22,28 @@ const ProfileCard = () => {
         />
         <div className="flex flex-col gap-[4px]">
           <span className="flex gap-[4px] items-center">
-            <span className="text-[12px]">로쌤만믿어</span>
+            <span className="text-[12px]">{tutorInfo.nickname}</span>
             <div className="text-c1 text-gray-300 py-[4px] px-[6px] bg-gray-800 rounded-[4px]">
-              Lv.1670+
+              Lv.{tutorInfo.highestLevel}
             </div>
           </span>
           <div className="flex gap-[4px] items-center">
-            <span className="flex gap-[4px] items-center">
-              <div className="w-[14px] h-[14px] rounded-full bg-gray-800" />
-              <span className="text-[12px] text-gray-500">직업1</span>
-            </span>
-            <span className="flex gap-[4px] items-center">
-              <div className="w-[14px] h-[14px] rounded-full bg-gray-800" />
-              <span className="text-[12px] text-gray-500">직업2</span>
-            </span>
+            {tutorInfo.classEngravings.map((item, index) => (
+              <span
+                className="flex gap-[4px] items-center"
+                key={index}>
+                <div className="w-[14px] h-[14px] rounded-full bg-gray-800" />
+                <span className="text-[12px] text-gray-500">{item}</span>
+              </span>
+            ))}
           </div>
         </div>
       </div>
       <span className="text-[14px] text-gray-200 font-semibold my-[16px]">
-        당신을 최고의 서포터로 만들겠습니다. (한줄소개)
+        {tutorInfo.consultingTitle}
       </span>
       <div className="flex gap-[4px] items-center">
-        {Array.from({ length: 4 }).map((_, index) => (
+        {tutorInfo.consultingTopics.map((topic, index) => (
           <Badge
             variant="outline"
             className={clsx(
@@ -46,7 +51,7 @@ const ProfileCard = () => {
               "dark:text-[10px] dark:text-gray-200 dark:font-light dark:border-gray-800"
             )}
             key={index}>
-            키워드글자수
+            {topic}
           </Badge>
         ))}
       </div>
