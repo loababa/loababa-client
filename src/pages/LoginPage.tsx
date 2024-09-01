@@ -1,9 +1,4 @@
-import {
-  GoogleLogo,
-  KakaoLogo,
-  LoababaLogo,
-  LoababaTitle
-} from "@/components/icons";
+import { KakaoLogo, LoababaLogo, LoababaTitle } from "@/components/icons";
 import { Button } from "@/components/ui/button.tsx";
 import { clsx } from "clsx";
 
@@ -35,18 +30,19 @@ const LoginPage = () => {
             />
             <span className="mx-auto">카카오 로그인</span>
           </Button>
-          <Button
-            className={clsx(
-              "w-full h-[48px] bg-black rounded-[8px] border border-[#8E918F] flex justify-start",
-              "dark:hover:bg-black"
-            )}
-            variant="ghost">
-            <GoogleLogo
-              width={24}
-              height={24}
-            />
-            <span className="mx-auto">구글 로그인</span>
-          </Button>
+          {/* TODO: 추후 구글 로그인 지원 시 가시화 */}
+          {/*<Button*/}
+          {/*  className={clsx(*/}
+          {/*    "w-full h-[48px] bg-black rounded-[8px] border border-[#8E918F] flex justify-start",*/}
+          {/*    "dark:hover:bg-black"*/}
+          {/*  )}*/}
+          {/*  variant="ghost">*/}
+          {/*  <GoogleLogo*/}
+          {/*    width={24}*/}
+          {/*    height={24}*/}
+          {/*  />*/}
+          {/*  <span className="mx-auto">구글 로그인</span>*/}
+          {/*</Button>*/}
         </div>
       </div>
     </section>
