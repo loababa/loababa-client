@@ -10,7 +10,8 @@ type GetTutorInfoListResponse = {
 };
 
 export const getTutorInfoList = async () => {
-  const response =
-    await baseInstance.get<GetTutorInfoListResponse>("/api/v1/consulting");
+  const response = await baseInstance.get<GetTutorInfoListResponse>(
+    "/api/v1/consulting/posts"
+  );
   return response.data;
 };
