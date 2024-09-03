@@ -85,21 +85,13 @@ const TutorDetailPage = () => {
             로쌤과 가능한 대화 주제
           </span>
           <div className="flex flex-col gap-[8px] mt-[10px] mb-[78px]">
-            <div className="w-full bg-gray-950 rounded-[8px] border-2 border-[#75FFBF]/10 py-[15px] px-[20px]">
-              <span className="text-gray-200 text-[14px]">
-                공백포함8글자 내외
-              </span>
-            </div>
-            <div className="w-full bg-gray-950 rounded-[8px] border-2 border-[#75FFBF]/10 py-[15px] px-[20px]">
-              <span className="text-gray-200 text-[14px]">
-                공백포함8글자 내외
-              </span>
-            </div>
-            <div className="w-full bg-gray-950 rounded-[8px] border-2 border-[#75FFBF]/10 py-[15px] px-[20px]">
-              <span className="text-gray-200 text-[14px]">
-                공백포함8글자 내외
-              </span>
-            </div>
+            {profileData?.data.topics.map((topic, index) => (
+              <div
+                key={index}
+                className="w-full bg-gray-950 rounded-[8px] border-2 border-[#75FFBF]/10 py-[15px] px-[20px]">
+                <span className="text-gray-200 text-[14px]">{topic}</span>
+              </div>
+            ))}
           </div>
         </div>
       </section>
