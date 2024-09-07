@@ -4,15 +4,17 @@ import { Input } from "@/components/ui/input.tsx";
 import { Button } from "@/components/ui/button.tsx";
 import { useForm } from "react-hook-form";
 import { ChangeEvent, useState } from "react";
+import { signUpStore } from "@/stores/signUpStore.ts";
 
 interface SetNicknameStepProps {
   handleNext: () => void;
 }
 
 export const TutorSetNicknameStep = ({ handleNext }: SetNicknameStepProps) => {
+  const { setNickname, setProfileImage } = signUpStore();
   const { register, handleSubmit, watch, formState, setValue } = useForm<{
     nickname: string;
-    profileImageUrl: string;
+    profileImage: File;
   }>();
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imageSrc, setImageSrc] = useState<string | null>(null);
@@ -26,7 +28,7 @@ export const TutorSetNicknameStep = ({ handleNext }: SetNicknameStepProps) => {
     if (file) {
       reader.readAsDataURL(file);
       setImageFile(file);
-      setValue("profileImageUrl", file.name);
+      setValue("profileImage", file);
     }
   };
 

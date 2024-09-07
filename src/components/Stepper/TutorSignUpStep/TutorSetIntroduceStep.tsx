@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input.tsx";
 import { Plus } from "@/components/icons";
 import { Textarea } from "@/components/ui/textarea.tsx";
 import { Controller, useFieldArray, useForm } from "react-hook-form";
+import { consultingInfoStore } from "@/stores/consultingInfoStore.ts";
 
 interface SetIntroduceStepProps {
   handleNext: () => void;
@@ -12,6 +13,7 @@ interface SetIntroduceStepProps {
 export const TutorSetIntroduceStep = ({
   handleNext
 }: SetIntroduceStepProps) => {
+  const { setTitle, setTopics, setContents } = consultingInfoStore();
   const { register, handleSubmit, formState, control } = useForm<{
     title: string;
     contents: string;

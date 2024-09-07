@@ -11,12 +11,14 @@ import {
 import { TIME_HOUR_LIST } from "@/constants/time.ts";
 import { Control, Controller, useFieldArray, useForm } from "react-hook-form";
 import { weekDayMap } from "@/constants/date.ts";
+import { consultingInfoStore } from "@/stores/consultingInfoStore.ts";
 
 interface SetScheduleStepProps {
   handleNext: () => void;
 }
 
 export const TutorSetScheduleStep = ({ handleNext }: SetScheduleStepProps) => {
+  const { setWeekly, setDaily } = consultingInfoStore();
   const [scheduleSelectMode, setScheduleSelectMode] = useState<
     "weekday" | "day"
   >("weekday");
@@ -85,7 +87,8 @@ export const TutorSetScheduleStep = ({ handleNext }: SetScheduleStepProps) => {
           요일별로 달라요
         </Button>
       </div>
-      <form onSubmit={handleWeekdaySubmit((data) => console.log(data))}>
+      <form
+        onSubmit={handleWeekdaySubmit((data) => console.log({ weekly: data }))}>
         {/* 평일 주말 달라요 */}
         {scheduleSelectMode === "weekday" && (
           <div className="flex flex-col gap-[12px] mt-[20px]">

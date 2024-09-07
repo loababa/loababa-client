@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button.tsx";
 import { Label } from "@/components/ui/label.tsx";
 import { Input } from "@/components/ui/input.tsx";
 import { useForm } from "react-hook-form";
+import { signUpStore } from "@/stores/signUpStore.ts";
 
 interface SetJobImprintStepProps {
   handleNext: () => void;
@@ -10,6 +11,7 @@ interface SetJobImprintStepProps {
 export const TutorSetJobImprintStep = ({
   handleNext
 }: SetJobImprintStepProps) => {
+  const { setClassEngravings, setHighestLevel } = signUpStore();
   const { register, handleSubmit, formState } = useForm<{
     firstJobImprint: string;
     secondJobImprint: string;
