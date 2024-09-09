@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button.tsx";
 import { useForm } from "react-hook-form";
 import { ChangeEvent, useState } from "react";
 import { signUpStore } from "@/stores/signUpStore.ts";
+import { toast } from "sonner";
 
 interface SetNicknameStepProps {
   handleNext: () => void;
@@ -12,11 +13,10 @@ interface SetNicknameStepProps {
 
 export const TutorSetNicknameStep = ({ handleNext }: SetNicknameStepProps) => {
   const { setNickname, setProfileImage } = signUpStore();
-  const { register, handleSubmit, watch, formState, setValue } = useForm<{
+  const { register, handleSubmit, formState, setValue } = useForm<{
     nickname: string;
     profileImage: File;
   }>();
-  const [imageFile, setImageFile] = useState<File | null>(null);
   const [imageSrc, setImageSrc] = useState<string | null>(null);
 
   const handleLoadImage = (event: ChangeEvent<HTMLInputElement>) => {
@@ -27,7 +27,6 @@ export const TutorSetNicknameStep = ({ handleNext }: SetNicknameStepProps) => {
     };
     if (file) {
       reader.readAsDataURL(file);
-      setImageFile(file);
       setValue("profileImage", file);
     }
   };
@@ -54,9 +53,15 @@ export const TutorSetNicknameStep = ({ handleNext }: SetNicknameStepProps) => {
       </Label>
       <form
         onSubmit={handleSubmit(async (data) => {
-          console.log("data", data);
+          const { nickname, profileImage } = data;
+          if (!profileImage) {
+            toast.error("프로필 이미지를 설정해주세요!");
+            return;
+          }
           // const res = await getNicknameCheck(data.nickname);
           // console.log(res);
+          setNickname(nickname);
+          handleNext();
         })}>
         <Input
           id="profile-image"

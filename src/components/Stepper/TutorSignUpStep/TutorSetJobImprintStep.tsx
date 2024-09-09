@@ -22,11 +22,9 @@ export const TutorSetJobImprintStep = ({
       <form
         onSubmit={handleSubmit(
           ({ firstJobImprint, secondJobImprint, highestLevel }) => {
-            console.log({
-              classEngravings: [firstJobImprint, secondJobImprint],
-              highestLevel: Number(highestLevel)
-            });
-            // handleNext();
+            setClassEngravings([firstJobImprint, secondJobImprint]);
+            setHighestLevel(Number(highestLevel));
+            handleNext();
           }
         )}>
         <fieldset>
