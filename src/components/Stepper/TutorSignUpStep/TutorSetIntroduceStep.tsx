@@ -33,7 +33,10 @@ export const TutorSetIntroduceStep = ({
             contents,
             topics: topics.map((topic) => topic.topic)
           });
-          // handleNext();
+          setTitle(title);
+          setContents(contents);
+          setTopics(topics.map((topic) => topic.topic));
+          handleNext();
         })}>
         <fieldset>
           <div className="flex flex-col mt-[40px]">

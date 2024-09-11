@@ -1,13 +1,13 @@
 import { create } from "zustand";
 
-type WeeklySchedule = {
+export type WeeklySchedule = {
   weekdayStartTime: string;
   weekdayEndTime: string;
   weekendStartTime: string;
   weekendEndTime: string;
 };
 
-type DailySchedule = {
+export type DailySchedule = {
   mondayStartTime: string;
   mondayEndTime: string;
   tuesdayStartTime: string;

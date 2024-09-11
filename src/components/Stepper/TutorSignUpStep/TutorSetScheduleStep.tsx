@@ -11,13 +11,20 @@ import {
 import { TIME_HOUR_LIST } from "@/constants/time.ts";
 import { Control, Controller, useFieldArray, useForm } from "react-hook-form";
 import { weekDayMap } from "@/constants/date.ts";
-import { consultingInfoStore } from "@/stores/consultingInfoStore.ts";
+import {
+  consultingInfoStore,
+  DailySchedule
+} from "@/stores/consultingInfoStore.ts";
 
 interface SetScheduleStepProps {
   handleNext: () => void;
+  handleComplete: () => void;
 }
 
-export const TutorSetScheduleStep = ({ handleNext }: SetScheduleStepProps) => {
+export const TutorSetScheduleStep = ({
+  handleNext,
+  handleComplete
+}: SetScheduleStepProps) => {
   const { setWeekly, setDaily } = consultingInfoStore();
   const [scheduleSelectMode, setScheduleSelectMode] = useState<
     "weekday" | "day"
@@ -88,7 +95,11 @@ export const TutorSetScheduleStep = ({ handleNext }: SetScheduleStepProps) => {
         </Button>
       </div>
       <form
-        onSubmit={handleWeekdaySubmit((data) => console.log({ weekly: data }))}>
+        onSubmit={handleWeekdaySubmit((data) => {
+          // console.log({ weekly: data });
+          setWeekly(data);
+          handleComplete();
+        })}>
         {/* 평일 주말 달라요 */}
         {scheduleSelectMode === "weekday" && (
           <div className="flex flex-col gap-[12px] mt-[20px]">
@@ -213,7 +224,8 @@ export const TutorSetScheduleStep = ({ handleNext }: SetScheduleStepProps) => {
             processedData[`${item.day}StartTime`] = item.startTime;
             processedData[`${item.day}EndTime`] = item.endTime;
           });
-          console.log({ daily: processedData });
+          setDaily(processedData as DailySchedule);
+          handleComplete();
         })}>
         {/* 요일별로 달라요 */}
         {scheduleSelectMode === "day" && (

@@ -61,6 +61,7 @@ export const TutorSetNicknameStep = ({ handleNext }: SetNicknameStepProps) => {
           // const res = await getNicknameCheck(data.nickname);
           // console.log(res);
           setNickname(nickname);
+          setProfileImage(profileImage);
           handleNext();
         })}>
         <Input

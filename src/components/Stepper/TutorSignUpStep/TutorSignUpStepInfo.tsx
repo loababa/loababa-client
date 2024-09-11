@@ -2,8 +2,21 @@ import { TutorSetNicknameStep } from "@/components/Stepper/TutorSignUpStep/Tutor
 import { TutorSetJobImprintStep } from "@/components/Stepper/TutorSignUpStep/TutorSetJobImprintStep.tsx";
 import { TutorSetIntroduceStep } from "@/components/Stepper/TutorSignUpStep/TutorSetIntroduceStep.tsx";
 import { TutorSetScheduleStep } from "@/components/Stepper/TutorSignUpStep/TutorSetScheduleStep.tsx";
+import { signUpStore } from "@/stores/signUpStore.ts";
+import { consultingInfoStore } from "@/stores/consultingInfoStore.ts";
 
-// TODO: 각 요소 step에서 handleSubmit도 받아서 Root Form Data에 저장해야 함
+const handleComplete = () => {
+  console.log("complete");
+  console.log("nickname", signUpStore.getState().nickname);
+  console.log("highestLevel", signUpStore.getState().highestLevel);
+  console.log("profileImage", signUpStore.getState().profileImage);
+  console.log("title", consultingInfoStore.getState().title);
+  console.log("contents", consultingInfoStore.getState().contents);
+  console.log("topics", consultingInfoStore.getState().topics);
+  console.log("weekly", consultingInfoStore.getState().weekly);
+  console.log("daily", consultingInfoStore.getState().daily);
+};
+
 export const tutorSignUpStepInfo = [
   {
     label: "기본 정보",
@@ -26,7 +39,10 @@ export const tutorSignUpStepInfo = [
   {
     label: "일정 선택",
     step: (handleNext: () => void) => (
-      <TutorSetScheduleStep handleNext={handleNext} />
+      <TutorSetScheduleStep
+        handleNext={handleNext}
+        handleComplete={handleComplete}
+      />
     )
   }
 ];
