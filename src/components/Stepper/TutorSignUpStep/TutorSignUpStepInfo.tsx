@@ -4,6 +4,7 @@ import { TutorSetIntroduceStep } from "@/components/Stepper/TutorSignUpStep/Tuto
 import { TutorSetScheduleStep } from "@/components/Stepper/TutorSignUpStep/TutorSetScheduleStep.tsx";
 import { signUpStore } from "@/stores/signUpStore.ts";
 import { consultingInfoStore } from "@/stores/consultingInfoStore.ts";
+import authStore from "@/stores/authStore.ts";
 
 const handleComplete = () => {
   console.log("complete");
@@ -15,6 +16,9 @@ const handleComplete = () => {
   console.log("topics", consultingInfoStore.getState().topics);
   console.log("weekly", consultingInfoStore.getState().weekly);
   console.log("daily", consultingInfoStore.getState().daily);
+  console.log("acToken", authStore.getState().accessToken);
+  console.log("rfToken", authStore.getState().refreshToken);
+  console.log("key", signUpStore.getState().key);
 };
 
 export const tutorSignUpStepInfo = [
