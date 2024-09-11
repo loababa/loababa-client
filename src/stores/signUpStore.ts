@@ -1,6 +1,8 @@
 import { create } from "zustand";
 
 type SignUpStore = {
+  key: string | null;
+  setKey: (key: string) => void;
   nickname: string;
   setNickname: (nickname: string) => void;
   profileImage: File | null;
@@ -12,6 +14,8 @@ type SignUpStore = {
 };
 
 export const signUpStore = create<SignUpStore>((set) => ({
+  key: null,
+  setKey: (key: string) => set({ key }),
   nickname: "",
   setNickname: (nickname: string) => set({ nickname }),
   profileImage: null,
