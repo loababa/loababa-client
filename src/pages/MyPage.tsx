@@ -2,10 +2,26 @@ import { MockAvatar } from "@/components/icons";
 import { Badge } from "@/components/ui/badge.tsx";
 import { clsx } from "clsx";
 import Divider from "@/components/Divider/Divider.tsx";
+import { Button } from "@/components/ui/button.tsx";
+import authStore from "@/stores/authStore.ts";
+import { Link } from "react-router-dom";
+import ROUTE_PATH from "@/constants/routePath.ts";
 
 const MyPage = () => {
+  const { isSignedIn } = authStore();
+
   return (
     <div className="flex flex-col">
+      {isSignedIn ? <SignedInContents /> : <NotSignedInContents />}
+    </div>
+  );
+};
+
+export default MyPage;
+
+const SignedInContents = () => {
+  return (
+    <>
       <section className="flex flex-col gap-[10px] px-[20px] mb-[30px]">
         <div className="flex gap-[8px]">
           <MockAvatar
@@ -81,8 +97,20 @@ const MyPage = () => {
           <span className="text-gray-400 font-normal">회원탈퇴</span>
         </div>
       </section>
-    </div>
+    </>
   );
 };
 
-export default MyPage;
+const NotSignedInContents = () => {
+  return (
+    <section className="flex flex-col items-center gap-[24px]">
+      <h1 className="text-center">
+        로그인하고 로아바바에서
+        <br /> 원하는 로쌤 / 모코코를 찾아보세요!
+      </h1>
+      <Link to={ROUTE_PATH.LOGIN}>
+        <Button>로그인하러가기</Button>
+      </Link>
+    </section>
+  );
+};
