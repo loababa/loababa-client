@@ -2,6 +2,8 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
 type AuthStore = {
+  isSignedIn: boolean;
+  setIsSignedIn: (value: boolean) => void;
   accessToken: {
     value: string;
   };
@@ -39,7 +41,9 @@ const authStore = create(
             value: ""
           }
         });
-      }
+      },
+      isSignedIn: true,
+      setIsSignedIn: (value: boolean) => set({ isSignedIn: value })
     }),
     {
       name: "auth-storage"
