@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom";
 import Header from "@/components/Header/Header.tsx";
 import Footer from "@/components/Footer/Footer.tsx";
+import NeedLoginDialog from "@/components/Dialog/NeedLoginDialog.tsx";
 
 interface BasicLayoutProps {
   withHeader?: boolean;
@@ -40,6 +41,8 @@ const BasicLayout = ({
         <Outlet />
       </main>
       {withFooter && <Footer />}
+      {/* Global Dialogs */}
+      <NeedLoginDialog />
     </div>
   );
 };

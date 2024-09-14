@@ -42,7 +42,7 @@ const authStore = create(
           }
         });
       },
-      isSignedIn: true,
+      isSignedIn: false,
       setIsSignedIn: (value: boolean) => set({ isSignedIn: value })
     }),
     {
