@@ -9,21 +9,27 @@ import { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getTutorInfoDetail } from "@/apis/getTutorInfoDetail.ts";
 import { TutorInfo } from "@/types";
+import authStore from "@/stores/authStore.ts";
 
 const TutorDetailPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  // 추후에는 서버에서 받아온 데이터를 사용하도록 변경
   const { nickname, highestLevel, classEngravings, consultingTopics } = location
     .state.info as TutorInfo;
+  const { isSignedIn } = authStore();
 
   useEffect(() => {
-    console.log(location.state);
-  }, []);
+    if (!isSignedIn) {
+      navigate(ROUTE_PATH.LOGIN);
+    }
+  }, [isSignedIn]);
 
   const { data: profileData } = useQuery({
     queryKey: ["tutor_profile", location.state.info.consultingPostId],
-    queryFn: () => getTutorInfoDetail(location.state.info.consultingPostId)
+    queryFn: () => getTutorInfoDetail(location.state.info.consultingPostId),
+    enabled: isSignedIn
   });
 
   return (
