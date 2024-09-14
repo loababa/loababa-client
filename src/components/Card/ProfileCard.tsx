@@ -1,21 +1,21 @@
 import { MockAvatar } from "@/components/icons";
 import { Badge } from "@/components/ui/badge.tsx";
 import { clsx } from "clsx";
-import { useNavigate } from "react-router-dom";
 import ROUTE_PATH from "@/constants/routePath.ts";
 import { TutorInfo } from "@/types";
+import { usePrivateNavigate } from "@/hooks/usePrivateNavigate.ts";
 
 interface ProfileCardProps {
   tutorInfo: TutorInfo;
 }
 
 const ProfileCard = ({ tutorInfo }: ProfileCardProps) => {
-  const navigate = useNavigate();
+  const { privateNavigate } = usePrivateNavigate();
   return (
     <div
       className="w-full min-h-[148px] bg-gray-900 rounded-[8px] p-[16px] flex flex-col cursor-pointer"
       onClick={() =>
-        navigate(
+        privateNavigate(
           ROUTE_PATH.TUTOR_DETAIL(tutorInfo.consultingPostId.toString()),
           { state: { info: tutorInfo } }
         )
