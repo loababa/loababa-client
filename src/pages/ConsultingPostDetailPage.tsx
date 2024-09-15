@@ -11,13 +11,19 @@ import { getConsultingPostDetail } from "@/apis/getConsultingPostDetail.ts";
 import { ConsultingPostListItem } from "@/types";
 import authStore from "@/stores/authStore.ts";
 
-const TutorDetailPage = () => {
+const ConsultingPostDetailPage = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
   // 추후에는 서버에서 받아온 데이터를 사용하도록 변경
-  const { nickname, highestLevel, classEngravings, consultingTopics } = location
-    .state.info as ConsultingPostListItem;
+  const {
+    nickname,
+    highestLevel,
+    classEngravings,
+    consultingTopics,
+    lossamId,
+    consultingPostId
+  } = location.state.info as ConsultingPostListItem;
   const { isSignedIn } = authStore();
 
   useEffect(() => {
@@ -27,9 +33,8 @@ const TutorDetailPage = () => {
   }, [isSignedIn]);
 
   const { data: consultingDetail } = useQuery({
-    queryKey: ["consulting_detail", location.state.info.consultingPostId],
-    queryFn: () =>
-      getConsultingPostDetail(location.state.info.consultingPostId),
+    queryKey: ["consulting_detail", consultingPostId],
+    queryFn: () => getConsultingPostDetail(consultingPostId.toString()),
     enabled: isSignedIn
   });
 
@@ -112,7 +117,9 @@ const TutorDetailPage = () => {
         <Button
           variant="ghost"
           className="w-full bg-green-400 min-h-[56px] rounded-[8px] font-semibold"
-          onClick={() => navigate(ROUTE_PATH.CONSULTING_REQUEST("1"))}>
+          onClick={() =>
+            navigate(ROUTE_PATH.CONSULTING_REQUEST(lossamId.toString()))
+          }>
           상담 요청하기
         </Button>
       </section>
@@ -120,4 +127,4 @@ const TutorDetailPage = () => {
   );
 };
 
-export default TutorDetailPage;
+export default ConsultingPostDetailPage;

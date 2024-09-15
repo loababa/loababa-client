@@ -5,7 +5,7 @@ import HomePage from "@/pages/HomePage.tsx";
 import LoginPage from "@/pages/LoginPage.tsx";
 import SignUpTutorPage from "@/pages/SignUpTutorPage.tsx";
 import SignUpTuteePage from "@/pages/SignUpTuteePage.tsx";
-import TutorDetailPage from "@/pages/TutorDetailPage.tsx";
+import ConsultingPostDetailPage from "@/pages/ConsultingPostDetailPage.tsx";
 import ConsultingRequestPage from "@/pages/ConsultingRequestPage.tsx";
 import ConsultingPage from "@/pages/ConsultingPage.tsx";
 import MyPage from "@/pages/MyPage.tsx";
@@ -133,7 +133,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: ROUTE_PATH.TUTOR_DETAIL(":id"),
-        element: <TutorDetailPage />
+        element: <ConsultingPostDetailPage />
       }
     ]
   }
