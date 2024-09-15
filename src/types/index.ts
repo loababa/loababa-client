@@ -8,3 +8,9 @@ export type TutorInfo = {
   consultingTitle: string;
   consultingTopics: string[];
 };
+
+export type ConsultingPostDetail = {
+  title: string;
+  contents: string;
+  topics: string[];
+};

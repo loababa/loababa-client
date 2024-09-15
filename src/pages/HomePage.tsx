@@ -1,12 +1,12 @@
 import ProfileCard from "@/components/Card/ProfileCard.tsx";
 import { ScrollArea } from "@/components/ui/scroll-area.tsx";
 import { useQuery } from "@tanstack/react-query";
-import { getTutorInfoList } from "@/apis/getTutorInfoList.ts";
+import { getConsultingPostList } from "@/apis/getConsultingPostList.ts";
 
 const HomePage = () => {
   const { data: tutorInfoList } = useQuery({
     queryKey: ["tutor_profile"],
-    queryFn: () => getTutorInfoList(),
+    queryFn: () => getConsultingPostList(),
     staleTime: 1000 * 60 * 60 // 1 hour
   });
 

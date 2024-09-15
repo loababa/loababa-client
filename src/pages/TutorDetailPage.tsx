@@ -7,7 +7,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import ROUTE_PATH from "@/constants/routePath.ts";
 import { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { getTutorInfoDetail } from "@/apis/getTutorInfoDetail.ts";
+import { getConsultingPostDetail } from "@/apis/getConsultingPostDetail.ts";
 import { TutorInfo } from "@/types";
 import authStore from "@/stores/authStore.ts";
 
@@ -26,9 +26,10 @@ const TutorDetailPage = () => {
     }
   }, [isSignedIn]);
 
-  const { data: profileData } = useQuery({
-    queryKey: ["tutor_profile", location.state.info.consultingPostId],
-    queryFn: () => getTutorInfoDetail(location.state.info.consultingPostId),
+  const { data: consultingDetail } = useQuery({
+    queryKey: ["consulting_detail", location.state.info.consultingPostId],
+    queryFn: () =>
+      getConsultingPostDetail(location.state.info.consultingPostId),
     enabled: isSignedIn
   });
 
@@ -80,10 +81,10 @@ const TutorDetailPage = () => {
       <section className="px-[20px]">
         <p className="flex flex-col gap-[16px] mb-[40px]">
           <span className="text-[18px] font-semibold">
-            {profileData?.data.title}
+            {consultingDetail?.data.title}
           </span>
           <span className="text-[14px] text-gray-400">
-            {profileData?.data.contents}
+            {consultingDetail?.data.contents}
           </span>
         </p>
         <div className="flex flex-col gap-[4px]">
@@ -91,7 +92,7 @@ const TutorDetailPage = () => {
             로쌤과 가능한 대화 주제
           </span>
           <div className="flex flex-col gap-[8px] mt-[10px] mb-[78px]">
-            {profileData?.data.topics.map((topic, index) => (
+            {consultingDetail?.data.topics.map((topic, index) => (
               <div
                 key={index}
                 className="w-full bg-gray-950 rounded-[8px] border-2 border-[#75FFBF]/10 py-[15px] px-[20px]">
