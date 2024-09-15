@@ -33,3 +33,35 @@ export type ConsultingReservation = {
   }[];
   lossamId: number;
 };
+
+export type LossamScheduleList = {
+  isBusinessDay: boolean;
+  date: string;
+  slots: {
+    timeRange: {
+      start: string;
+      end: string;
+    };
+    isAvailable: boolean;
+  }[];
+}[];
+
+export type ConsultingReservationDetail = ConsultingReservation & {
+  mokokoId: number;
+  new: boolean;
+  existing: boolean;
+};
+
+export type MyReservation = {
+  reservationListForms: {
+    id: number;
+    lossamId: number;
+    mokokoId: number;
+    inquiryDetails: string;
+    dateTimeRanges: {
+      start: string;
+      end: string;
+    }[];
+  };
+  memberType: string;
+};
