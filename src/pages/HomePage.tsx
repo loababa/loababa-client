@@ -25,7 +25,7 @@ const HomePage = () => {
         <div className="flex flex-col gap-[16px] px-[20px]">
           {tutorInfoList?.data?.consultingListForm?.map((info, index) => (
             <ProfileCard
-              tutorInfo={info}
+              consultingPostItem={info}
               key={index}
             />
           ))}

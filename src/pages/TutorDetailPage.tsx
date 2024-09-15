@@ -8,7 +8,7 @@ import ROUTE_PATH from "@/constants/routePath.ts";
 import { useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getConsultingPostDetail } from "@/apis/getConsultingPostDetail.ts";
-import { TutorInfo } from "@/types";
+import { ConsultingPostListItem } from "@/types";
 import authStore from "@/stores/authStore.ts";
 
 const TutorDetailPage = () => {
@@ -17,7 +17,7 @@ const TutorDetailPage = () => {
 
   // 추후에는 서버에서 받아온 데이터를 사용하도록 변경
   const { nickname, highestLevel, classEngravings, consultingTopics } = location
-    .state.info as TutorInfo;
+    .state.info as ConsultingPostListItem;
   const { isSignedIn } = authStore();
 
   useEffect(() => {

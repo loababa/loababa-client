@@ -1,11 +1,11 @@
 import { baseInstance } from "@/apis/index.ts";
-import { TutorInfo } from "@/types";
+import { ConsultingPostListItem } from "@/types";
 
 type GetTutorInfoListResponse = {
   code: string;
   message: string;
   data: {
-    consultingListForm: TutorInfo[];
+    consultingListForm: ConsultingPostListItem[];
   };
 };
 
