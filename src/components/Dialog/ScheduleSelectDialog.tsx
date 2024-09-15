@@ -14,7 +14,7 @@ import { Button } from "@/components/ui/button.tsx";
 import { Calendar } from "@/components/ui/calendar.tsx";
 import Divider from "@/components/Divider/Divider.tsx";
 import { useState } from "react";
-import { format } from "date-fns";
+import { format, parse } from "date-fns";
 import { ko } from "date-fns/locale";
 import { clsx } from "clsx";
 import { TIME_ONE_HOUR_LIST } from "@/constants/time.ts";
@@ -49,11 +49,30 @@ const ScheduleTimeSelectItem = ({
 
 interface ScheduleSelectDialogProps {
   trigger?: React.ReactNode;
+  handleSubmit: (value: { fromDate: Date; toDate: Date }) => void;
 }
 
-const ScheduleSelectDialog = ({ trigger }: ScheduleSelectDialogProps) => {
+const ScheduleSelectDialog = ({
+  trigger,
+  handleSubmit
+}: ScheduleSelectDialogProps) => {
   const [selectedDate, setSelectedDate] = useState<Date | undefined>();
   const [selectedTime, setSelectedTime] = useState<string | undefined>();
+
+  const handleProcessTimeDistance = (date: string, time: string) => {
+    const [fromTime, toTime] = time.split(" ~ ");
+    const fromDate = parse(
+      date + " " + fromTime,
+      "yyyy.MM.dd HH:mm",
+      new Date()
+    );
+    const toDate = parse(date + " " + toTime, "yyyy.MM.dd HH:mm", new Date());
+
+    console.log(fromDate);
+    console.log(toDate);
+    handleSubmit({ fromDate: fromDate, toDate: toDate });
+    return;
+  };
 
   return (
     <Dialog>
@@ -130,9 +149,22 @@ const ScheduleSelectDialog = ({ trigger }: ScheduleSelectDialogProps) => {
         </DialogHeader>
 
         <DialogFooter className="w-full px-[20px] pb-[20px] sm:justify-center">
+          {/*<DialogClose asChild>*/}
+          {/*  <Button*/}
+          {/*    disabled={!selectedTime}*/}
+          {/*    className="w-full text-[16px] font-semibold dark:bg-green-400 dark:hover:bg-green-400/80 dark:text-white py-[16px] h-fit max-h-[50px]">*/}
+          {/*    확인*/}
+          {/*  </Button>*/}
+          {/*</DialogClose>*/}
           <DialogClose asChild>
             <Button
               disabled={!selectedTime}
+              onClick={() =>
+                handleProcessTimeDistance(
+                  format(selectedDate!, "yyyy.MM.dd"),
+                  selectedTime!
+                )
+              }
               className="w-full text-[16px] font-semibold dark:bg-green-400 dark:hover:bg-green-400/80 dark:text-white py-[16px] h-fit max-h-[50px]">
               확인
             </Button>
