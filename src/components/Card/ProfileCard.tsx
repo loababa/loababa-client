@@ -1,9 +1,9 @@
-import { MockAvatar } from "@/components/icons";
 import { Badge } from "@/components/ui/badge.tsx";
 import { clsx } from "clsx";
 import ROUTE_PATH from "@/constants/routePath.ts";
 import { ConsultingPostListItem } from "@/types";
 import { usePrivateNavigate } from "@/hooks/usePrivateNavigate.ts";
+import { MockAvatar } from "@/components/icons";
 
 interface ProfileCardProps {
   consultingPostItem: ConsultingPostListItem;
@@ -27,6 +27,12 @@ const ProfileCard = ({ consultingPostItem }: ProfileCardProps) => {
           width={40}
           height={40}
         />
+        {/* TODO: 추후 아래 이미지로 대체 */}
+        {/*<img*/}
+        {/*  src={consultingPostItem.profileImageUrl}*/}
+        {/*  alt="profile"*/}
+        {/*  className="w-[40px] h-[40px] rounded-full"*/}
+        {/*/>*/}
         <div className="flex flex-col gap-[4px]">
           <span className="flex gap-[4px] items-center">
             <span className="text-[12px]">{consultingPostItem.nickname}</span>
