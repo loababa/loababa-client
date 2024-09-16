@@ -10,6 +10,7 @@ import {
 import { Button } from "@/components/ui/button.tsx";
 import { clsx } from "clsx";
 import { useMediaQuery } from "@/hooks/useMediaQuery.ts";
+import { ConsultingSelectDrawer } from "@/components/Drawer/ConsultingSelectDrawer.tsx";
 
 type TabItem = "pending" | "confirmed" | "past";
 
@@ -112,11 +113,15 @@ const ConsultingPage = () => {
                   className="w-full dark:bg-gray-900 dark:hover:bg-gray-950 dark:border-gray-600">
                   상세 보기
                 </Button>
-                <Button
-                  variant="default"
-                  className="w-full">
-                  상담 선택
-                </Button>
+                <ConsultingSelectDrawer
+                  trigger={
+                    <Button
+                      variant="default"
+                      className="w-full">
+                      상담 선택
+                    </Button>
+                  }
+                />
               </div>
             </div>
           </div>
