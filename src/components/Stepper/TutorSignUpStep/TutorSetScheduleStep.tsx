@@ -15,16 +15,17 @@ import {
   consultingInfoStore,
   DailySchedule
 } from "@/stores/consultingInfoStore.ts";
+import { useNavigate } from "react-router-dom";
+import ROUTE_PATH from "@/constants/routePath.ts";
 
 interface SetScheduleStepProps {
-  handleNext: () => void;
-  handleComplete: () => void;
+  handleComplete: () => Promise<void>;
 }
 
 export const TutorSetScheduleStep = ({
-  handleNext,
   handleComplete
 }: SetScheduleStepProps) => {
+  const navigate = useNavigate();
   const { setWeekly, setDaily } = consultingInfoStore();
   const [scheduleSelectMode, setScheduleSelectMode] = useState<
     "weekday" | "day"
@@ -96,9 +97,8 @@ export const TutorSetScheduleStep = ({
       </div>
       <form
         onSubmit={handleWeekdaySubmit((data) => {
-          // console.log({ weekly: data });
           setWeekly(data);
-          handleComplete();
+          handleComplete().then(() => navigate(ROUTE_PATH.SIGNUP_SUCCESS));
         })}>
         {/* 평일 주말 달라요 */}
         {scheduleSelectMode === "weekday" && (

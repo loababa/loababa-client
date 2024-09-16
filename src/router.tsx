@@ -12,6 +12,7 @@ import MyPage from "@/pages/MyPage.tsx";
 import { MockAvatar, Notification } from "@/components/icons";
 import ConsultingDetailPage from "@/pages/ConsultingDetailPage.tsx";
 import BackButton from "@/components/Layout/BackButton.tsx";
+import { SignUpSuccessPage } from "@/pages/SignUpSuccessPage.tsx";
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,20 @@ const router = createBrowserRouter([
       {
         path: ROUTE_PATH.SIGNUP_TUTOR,
         element: <SignUpTutorPage />
+      }
+    ]
+  },
+  {
+    element: (
+      <BasicLayout
+        withHeader
+        withHeaderOptions={{ title: "로쌤 프로필 작성 " }}
+      />
+    ),
+    children: [
+      {
+        path: ROUTE_PATH.SIGNUP_SUCCESS,
+        element: <SignUpSuccessPage />
       }
     ]
   },

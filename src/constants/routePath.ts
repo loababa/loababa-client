@@ -3,6 +3,7 @@ const ROUTE_PATH = {
   LOGIN: "/login",
   SIGNUP_TUTOR: "/lossam/signup",
   SIGNUP_TUTEE: "/mokoko/signup",
+  SIGNUP_SUCCESS: "/signup-success",
   TUTOR_DETAIL: (id: string) => `/lossam/${id}`,
   CONSULTING_REQUEST: (id: string) => `/lossam/${id}/consulting-request`,
   CONSULTING: "/consulting",
