@@ -8,9 +8,14 @@ const LoginPage = () => {
 
   const lossamKey = location.search.split("=")[1];
 
-  const loginRedirectUri = import.meta.env.PROD
-    ? "https://loababa.com/lossam/signup"
-    : "http://localhost:5173/lossam/signup";
+  const redirectUri = lossamKey
+    ? import.meta.env.PROD
+      ? "https://loababa.com/lossam/signup"
+      : "http://localhost:5173/lossam/signup"
+    : import.meta.env.PROD
+      ? "https://loababa.com/mokoko/signup"
+      : "http://localhost:5173/mokoko/signup";
+
   return (
     <section className="px-[20px]">
       <div className="flex flex-col items-center justify-center gap-[4px] my-[180px]">
@@ -27,7 +32,9 @@ const LoginPage = () => {
         <h1 className="text-[16px] font-semibold">간편 로그인</h1>
         <div className="flex flex-col gap-[8px] w-full mt-[20px]">
           <Link
-            to={`https://kauth.kakao.com/oauth/authorize?client_id=${import.meta.env.VITE_KAKAO_CLIENT_ID}&redirect_uri=${loginRedirectUri}&response_type=code&state=${lossamKey ?? ""}`}
+            to={`https://kauth.kakao.com/oauth/authorize?client_id=${import.meta.env.VITE_KAKAO_CLIENT_ID}&redirect_uri=${redirectUri}&response_type=code${
+              lossamKey ? `&state=${lossamKey}` : ""
+            }`}
             rel="noreferrer">
             <Button
               className={clsx(
