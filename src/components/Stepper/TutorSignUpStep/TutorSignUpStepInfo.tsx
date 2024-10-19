@@ -5,13 +5,16 @@ import { TutorSetScheduleStep } from "@/components/Stepper/TutorSignUpStep/Tutor
 import { signUpStore } from "@/stores/signUpStore.ts";
 import { consultingInfoStore } from "@/stores/consultingInfoStore.ts";
 import authStore from "@/stores/authStore.ts";
-// import { consultingInfoStore } from "@/stores/consultingInfoStore.ts";
-// import authStore from "@/stores/authStore.ts";
+import { getS3PresignedUrl } from "@/apis/getS3PresignedUrl.ts";
+import { putS3Upload } from "@/apis/putS3Upload.ts";
+import { postTutorSignUp } from "@/apis/postTutorSignUp.ts";
+import { postConsulting } from "@/apis/postConsulting.ts";
 
 const handleComplete = async () => {
   console.log("complete");
   console.log("nickname", signUpStore.getState().nickname);
   console.log("highestLevel", signUpStore.getState().highestLevel);
+  console.log("classEngravings", signUpStore.getState().classEngravings);
   console.log("profileImage", signUpStore.getState().profileImage);
   console.log("title", consultingInfoStore.getState().title);
   console.log("contents", consultingInfoStore.getState().contents);
@@ -22,16 +25,36 @@ const handleComplete = async () => {
   console.log("rfToken", authStore.getState().refreshToken);
   console.log("key", signUpStore.getState().key);
 
-  // const profileImage = signUpStore.getState().profileImage;
-  // if (profileImage) {
-  //   const presignedUrl = await getS3PresignedUrl(
-  //     profileImage.name,
-  //     "profile-images"
-  //   );
-  //   await putS3Upload(profileImage, presignedUrl);
-  //   const imageUrl = presignedUrl.split("?")[0];
-  //   console.log(imageUrl);
-  // }
+  const profileImage = signUpStore.getState().profileImage;
+  let imageUrl = "";
+  if (profileImage) {
+    const presignedUrlResponse = await getS3PresignedUrl(
+      profileImage.name,
+      "profile-images"
+    );
+    await putS3Upload(profileImage, presignedUrlResponse.data);
+    imageUrl = presignedUrlResponse.data.split("?")[0];
+    console.log(imageUrl);
+  }
+  // 회원가입
+  await postTutorSignUp(
+    {
+      nickname: signUpStore.getState().nickname,
+      profileImageUrl: imageUrl,
+      classEngravings: signUpStore.getState().classEngravings,
+      highestLevel: signUpStore.getState().highestLevel
+    },
+    signUpStore.getState().key ?? ""
+  );
+
+  // 상담 정보 등록
+  await postConsulting({
+    title: consultingInfoStore.getState().title,
+    contents: consultingInfoStore.getState().contents,
+    topics: consultingInfoStore.getState().topics,
+    weekly: consultingInfoStore.getState().weekly,
+    daily: consultingInfoStore.getState().daily
+  });
 };
 
 export const tutorSignUpStepInfo = [

@@ -1,7 +1,7 @@
 const SignUpTuteePage = () => {
   return (
     <div>
-      <h1>Sign Up Tutee Page</h1>
+      <span>Signing...</span>
     </div>
   );
 };
