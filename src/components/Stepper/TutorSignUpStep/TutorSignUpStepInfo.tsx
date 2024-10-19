@@ -12,48 +12,53 @@ import { postConsulting } from "@/apis/postConsulting.ts";
 
 const handleComplete = async () => {
   console.log("complete");
-  console.log("nickname", signUpStore.getState().nickname);
-  console.log("highestLevel", signUpStore.getState().highestLevel);
-  console.log("classEngravings", signUpStore.getState().classEngravings);
-  console.log("profileImage", signUpStore.getState().profileImage);
-  console.log("title", consultingInfoStore.getState().title);
-  console.log("contents", consultingInfoStore.getState().contents);
-  console.log("topics", consultingInfoStore.getState().topics);
-  console.log("weekly", consultingInfoStore.getState().weekly);
-  console.log("daily", consultingInfoStore.getState().daily);
-  console.log("acToken", authStore.getState().accessToken);
-  console.log("rfToken", authStore.getState().refreshToken);
-  console.log("key", signUpStore.getState().key);
+  const { nickname, highestLevel, classEngravings, profileImage, key } =
+    signUpStore.getState();
+  const { title, contents, topics, weekly, daily } =
+    consultingInfoStore.getState();
+  const { accessToken, refreshToken } = authStore.getState();
 
-  const profileImage = signUpStore.getState().profileImage;
+  console.log("nickname", nickname);
+  console.log("highestLevel", highestLevel);
+  console.log("classEngravings", classEngravings);
+  console.log("profileImage", profileImage);
+  console.log("key", key);
+  console.log("title", title);
+  console.log("contents", contents);
+  console.log("topics", topics);
+  console.log("weekly", weekly);
+  console.log("daily", daily);
+  console.log("accessToken", accessToken);
+  console.log("refreshToken", refreshToken);
+
   let imageUrl = "";
   if (profileImage) {
-    const presignedUrlResponse = await getS3PresignedUrl(
+    const preSignedUrlResponse = await getS3PresignedUrl(
       profileImage.name,
       "profile-images"
     );
-    await putS3Upload(profileImage, presignedUrlResponse.data);
-    imageUrl = presignedUrlResponse.data.split("?")[0];
+    await putS3Upload(profileImage, preSignedUrlResponse.data);
+    imageUrl = preSignedUrlResponse.data.split("?")[0];
     console.log(imageUrl);
   }
   // 회원가입
   await postTutorSignUp(
     {
-      nickname: signUpStore.getState().nickname,
+      nickname: nickname,
       profileImageUrl: imageUrl,
-      classEngravings: signUpStore.getState().classEngravings,
-      highestLevel: signUpStore.getState().highestLevel
+      classEngravings: classEngravings,
+      highestLevel: highestLevel
     },
-    signUpStore.getState().key ?? ""
+    key ?? ""
   );
 
   // 상담 정보 등록
   await postConsulting({
-    title: consultingInfoStore.getState().title,
-    contents: consultingInfoStore.getState().contents,
-    topics: consultingInfoStore.getState().topics,
-    weekly: consultingInfoStore.getState().weekly,
-    daily: consultingInfoStore.getState().daily
+    title: title,
+    contents: contents,
+    topics: topics,
+    weekly: weekly,
+    daily: daily
   });
 };
 
